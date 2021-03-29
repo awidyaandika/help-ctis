@@ -11,15 +11,24 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
+        'centre_id',
+        'username',
         'password',
+        'name',
+        'gender',
+        'dob',
+        'email',
+        'phone',
+        'address',
+        'position',
     ];
 
     /**
@@ -40,4 +49,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the Manager that owns the Test Centre.
+     */
+    public function testcentre()
+    {
+        return $this->belongsTo('App\TestCentre');
+    }
 }

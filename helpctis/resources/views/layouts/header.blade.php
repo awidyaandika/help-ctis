@@ -5,7 +5,11 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="../../index3.html" class="nav-link">Home</a>
+            @if(auth()->user()->position == 'manager')
+                <a href="{{url('/manager/home')}}" class="nav-link">Home</a>
+            @elseif(auth()->user()->position == 'officer')
+                <a href="{{url('/officer/home')}}" class="nav-link">Home</a>
+            @endif
         </li>
     </ul>
 

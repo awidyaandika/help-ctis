@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.laravel.component" name="Laravel_3/10/21, 9:36 PM" invoke="2c66fd96-7cae-41cc-ab76-5a6eb8d37368 C:/xampp/htdocs/helpctis/artisan" alias="artisan" enabled="true" version="2">
+<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.laravel.component" name="Laravel_3/26/21, 10:36 PM" invoke="2c66fd96-7cae-41cc-ab76-5a6eb8d37368 C:/xampp/htdocs/helpctis/artisan" alias="artisan" enabled="true" version="2">
   <extraData><![CDATA[version:3]]></extraData>
   <command>
     <name>clear-compiled</name>
@@ -2632,7 +2632,7 @@
   </command>
   <command>
     <name>route:list</name>
-    <help><![CDATA[List all registered routes<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--columns</td><td></td><td>Columns to include in the route table</td></tr> <tr><td>--compact</td><td>(-c)</td><td>Only show method, URI and action columns</td></tr> <tr><td>--json</td><td></td><td>Output the route list as JSON</td></tr> <tr><td>--method</td><td></td><td>Filter the routes by method</td></tr> <tr><td>--name</td><td></td><td>Filter the routes by name</td></tr> <tr><td>--path</td><td></td><td>Filter the routes by path</td></tr> <tr><td>--reverse</td><td>(-r)</td><td>Reverse the ordering of the routes</td></tr> <tr><td>--sort</td><td></td><td>The column (domain, method, uri, name, action, middleware) to sort by</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display help for the given command. When no command is given display help for the <b>list</b> command</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
+    <help><![CDATA[List all registered routes<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--columns</td><td></td><td>Columns to include in the route table</td></tr> <tr><td>--compact</td><td>(-c)</td><td>Only show method, URI and action columns</td></tr> <tr><td>--json</td><td></td><td>Output the route list as JSON</td></tr> <tr><td>--method</td><td></td><td>Filter the routes by method</td></tr> <tr><td>--name</td><td></td><td>Filter the routes by name</td></tr> <tr><td>--path</td><td></td><td>Only show routes matching the given path pattern</td></tr> <tr><td>--except-path</td><td></td><td>Do not display the routes matching the given path pattern</td></tr> <tr><td>--reverse</td><td>(-r)</td><td>Reverse the ordering of the routes</td></tr> <tr><td>--sort</td><td></td><td>The column (domain, method, uri, name, action, middleware) to sort by</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display help for the given command. When no command is given display help for the <b>list</b> command</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
     <optionsBefore>
       <option name="--columns" shortcut="" pattern="equals">
         <help><![CDATA[Columns to include in the route table]]></help>
@@ -2650,7 +2650,10 @@
         <help><![CDATA[Filter the routes by name]]></help>
       </option>
       <option name="--path" shortcut="" pattern="equals">
-        <help><![CDATA[Filter the routes by path]]></help>
+        <help><![CDATA[Only show routes matching the given path pattern]]></help>
+      </option>
+      <option name="--except-path" shortcut="" pattern="equals">
+        <help><![CDATA[Do not display the routes matching the given path pattern]]></help>
       </option>
       <option name="--reverse" shortcut="-r">
         <help><![CDATA[Reverse the ordering of the routes]]></help>

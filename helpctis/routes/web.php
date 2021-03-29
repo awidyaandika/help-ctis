@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('officer/home', [App\Http\Controllers\HomeController::class, 'handleOfficer'])->name('officer.route')->middleware('officer');
+
+Route::resource('testcentres', TestCentreController::class);
+Route::get('/manager/home', [App\Http\Controllers\HomeController::class, 'handleManager'])->name('manager.route')->middleware('manager');
+Route::get('/manager/test-centre', [App\Http\Controllers\TestCentreController::class, 'index'])->name('view-testcentre')->middleware('manager');
