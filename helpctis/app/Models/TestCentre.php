@@ -9,8 +9,6 @@ class TestCentre extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
-
     protected $fillable = [
         'centreName',
         'address',
@@ -22,8 +20,8 @@ class TestCentre extends Model
     /**
      * Get the Test Centre for the Manager.
      */
-    public function user()
-    {
-        return $this->hasMany('App\User');
-    }
+//    public function user()
+//    {
+//        return $this->hasMany(User::class, 'centre_id', 'id');
+//    }
 }

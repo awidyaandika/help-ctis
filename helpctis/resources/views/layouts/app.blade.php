@@ -92,14 +92,6 @@
         });
     });
 </script>
-<!-- For refresh page if user choose cancel on logout sidebar -->
-<script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            location.reload(true);
-        });
-    });
-</script>
 <!-- Bootstrap 4 -->
 <script src="../helpctis/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->

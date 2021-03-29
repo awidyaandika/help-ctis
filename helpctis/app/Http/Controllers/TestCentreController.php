@@ -27,7 +27,7 @@ class TestCentreController extends Controller
      */
     public function create()
     {
-        //
+        return view('manager.addtestcentre');
     }
 
     /**
@@ -38,7 +38,18 @@ class TestCentreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'centreName' => 'required',
+            'address' => 'required',
+            'postalCode' => 'required',
+            'phone' => 'required',
+            'city' => 'required',
+        ]);
+
+        TestCentre::create($request->all());
+
+        return redirect()->route('testcentres.index')
+            ->with('success','Test Centre created successfully.');
     }
 
     /**
@@ -85,7 +96,7 @@ class TestCentreController extends Controller
     {
         $testCentre->delete();
 
-        return redirect()->route('manager.testcentre')
+        return redirect()->route('testcentres.index')
             ->with('success','Test Centre deleted successfully');
     }
 }
