@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Test Centre</a></li>
-                        <li class="breadcrumb-item active">Add Test Centre</li>
+                        <li class="breadcrumb-item active">View Test Centre</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -51,6 +51,7 @@
                         </thead>
                         <tbody>
                         @foreach ($testCentre as $testcentre)
+                        @if($testcentre->user_id==Auth::user()->id)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $testcentre->centreName}}</td>
@@ -58,7 +59,7 @@
                             <td>{{ $testcentre->postalCode}}</td>
                             <td>{{ $testcentre->phone}}</td>
                             <td>{{ $testcentre->city}}</td>
-                            <td class="text-center">
+                            <td>
                                 <form action="{{route('testCentre.destroy', $testcentre->id)}}" method="POST">
                                     <input name="_method" type="hidden" value="DELETE">
                                     <a class="btn btn-primary btn-sm" href="{{ route('testCentre.edit', $testcentre->id) }}"><i class="nav-icon fas fa-edit"></i></a>
@@ -68,6 +69,7 @@
                                 </form>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                         </tbody>
                         <tfoot>

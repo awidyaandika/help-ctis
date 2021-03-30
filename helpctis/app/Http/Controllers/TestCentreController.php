@@ -39,6 +39,7 @@ class TestCentreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id',
             'centreName' => 'required',
             'address' => 'required',
             'postalCode' => 'required',

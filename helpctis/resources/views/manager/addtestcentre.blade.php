@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Test Centre</a></li>
-                        <li class="breadcrumb-item active">View Test Centre</li>
+                        <li class="breadcrumb-item active">Add Test Centre</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -44,6 +44,7 @@
                         <form action="{{ route('testCentre.store') }}" method="post">
                             @csrf
                             <div class="card-body">
+                                <input type="hidden" class="form-control" id="exampleInputText" value="{{Auth::user()->id}}" name="user_id">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Test Centre Name</label>
                                     <input type="text" class="form-control" id="exampleInputText" placeholder="Enter Test Centre name" name="centreName">

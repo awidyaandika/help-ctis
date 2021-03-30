@@ -55,6 +55,6 @@ class User extends Authenticatable
      */
     public function testcentre()
     {
-        return $this->belongsTo(TestCentre::class, 'centre_id', 'id');
+        return $this->belongsTo(TestCentre::class, 'user_id', 'id');
     }
 }

@@ -95,6 +95,20 @@
                     </div>
                 </div>
 
+                <div class="input-group mb-3">
+                    <select type="text" class="form-control @error('position') is-invalid @enderror"  value="{{ old('position') }}" required autofocus id="position" name="position" placeholder="Position">
+                            <option value="manager">Manager</option>
+                            <option value="officer">Officer</option>
+                            <option value="tester">Tester</option>
+                            <option value="patient">Patient</option>
+                    </select>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-tasks"></span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
