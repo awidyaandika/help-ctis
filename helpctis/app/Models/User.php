@@ -53,8 +53,8 @@ class User extends Authenticatable
     /**
      * Get the Manager that owns the Test Centre.
      */
-//    public function testcentre()
-//    {
-//        return $this->belongsTo(TestCentre::class, 'centre_id', 'id');
-//    }
+    public function testcentre()
+    {
+        return $this->belongsTo(TestCentre::class, 'centre_id', 'id');
+    }
 }

@@ -41,28 +41,29 @@
                                 </button>
                             </div>
                         @endif
-                        <form action="{{ route('testCentre.store') }}" method="post">
+                        <form action="{{ route('testCentre.update', $testCentre->id) }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Test Centre Name</label>
-                                    <input type="text" class="form-control" id="exampleInputText" placeholder="Enter Test Centre name" name="centreName">
+                                    <input type="text" class="form-control" id="exampleInputText" value="{{ $testCentre->centreName }}" placeholder="Enter Test Centre name" name="centreName">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Address</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="address"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="address">{{ $testCentre->address }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Postal Code</label>
-                                    <input type="text" class="form-control" id="exampleInputText" placeholder="Enter postal code" name="postalCode">
+                                    <input type="text" class="form-control" id="exampleInputText" value="{{ $testCentre->postalCode }}" placeholder="Enter postal code" name="postalCode">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Phone</label>
-                                    <input type="text" class="form-control" id="exampleInputText" placeholder="Enter phone" name="phone">
+                                    <input type="text" class="form-control" id="exampleInputText" value="{{ $testCentre->phone }}" placeholder="Enter phone" name="phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">City</label>
-                                    <input type="text" class="form-control" id="exampleInputText" placeholder="Enter city" name="city">
+                                    <input type="text" class="form-control" id="exampleInputText" value="{{ $testCentre->city }}" placeholder="Enter city" name="city">
                                 </div>
                             </div>
                             <!-- /.card-body -->

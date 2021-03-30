@@ -20,8 +20,8 @@ class TestCentre extends Model
     /**
      * Get the Test Centre for the Manager.
      */
-//    public function user()
-//    {
-//        return $this->hasMany(User::class, 'centre_id', 'id');
-//    }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'centre_id', 'id');
+    }
 }

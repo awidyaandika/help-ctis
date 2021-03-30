@@ -50,17 +50,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($testcentres as $key => $value)
+                        @foreach ($testCentre as $testcentre)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $value->centreName}}</td>
-                            <td>{{ $value->address}}</td>
-                            <td>{{ $value->postalCode}}</td>
-                            <td>{{ $value->phone}}</td>
-                            <td>{{ $value->city}}</td>
+                            <td>{{ $testcentre->centreName}}</td>
+                            <td>{{ $testcentre->address}}</td>
+                            <td>{{ $testcentre->postalCode}}</td>
+                            <td>{{ $testcentre->phone}}</td>
+                            <td>{{ $testcentre->city}}</td>
                             <td class="text-center">
-                                <form action="{{ route('testcentres.destroy', $value->id) }}" method="POST">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('testcentres.edit', $value->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                <form action="{{route('testCentre.destroy', $testcentre->id)}}" method="POST">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('testCentre.edit', $testcentre->id) }}"><i class="nav-icon fas fa-edit"></i></a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
@@ -81,7 +82,7 @@
                         </tr>
                         </tfoot>
                     </table>
-                    {!! $testcentres->links() !!}
+                    {!! $testCentre->links() !!}
                 </div>
             </div>
         </div>

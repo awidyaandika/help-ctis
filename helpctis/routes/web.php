@@ -24,7 +24,8 @@ Auth::routes();
 
 Route::get('officer/home', [App\Http\Controllers\HomeController::class, 'handleOfficer'])->name('officer.route')->middleware('officer');
 
-Route::resource('testcentres', TestCentreController::class)->middleware('manager');
+Route::resource('testCentre', TestCentreController::class)->middleware('manager');
 Route::get('/manager/home', [App\Http\Controllers\HomeController::class, 'handleManager'])->name('manager.route')->middleware('manager');
 Route::get('/manager/test-centre', [App\Http\Controllers\TestCentreController::class, 'index'])->name('view-testcentre')->middleware('manager');
-Route::get('/manager/add-test-centre', [App\Http\Controllers\TestCentreController::class, 'create'])->name('add-testcentre')->middleware('manager');
+Route::get('/manager/test-centre/add', [App\Http\Controllers\TestCentreController::class, 'create'])->name('add-testcentre')->middleware('manager');
+Route::get('/manager/test-centre/{id}/edit', [App\Http\Controllers\TestCentreController::class, 'edit'])->name('edit-testcentre')->middleware('manager');

@@ -14,9 +14,9 @@ class TestCentreController extends Controller
      */
     public function index()
     {
-        $testcentres = TestCentre::latest()->paginate(5);
+        $testCentre = TestCentre::latest()->paginate(5);
 
-        return view('manager.testcentre', compact('testcentres'))
+        return view('manager.testcentre', compact('testCentre'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -48,7 +48,7 @@ class TestCentreController extends Controller
 
         TestCentre::create($request->all());
 
-        return redirect()->route('testcentres.index')
+        return redirect()->route('testCentre.index')
             ->with('success','Test Centre created successfully.');
     }
 
@@ -71,7 +71,7 @@ class TestCentreController extends Controller
      */
     public function edit(TestCentre $testCentre)
     {
-        return view('manager.editTestCentre', compact('testCentre'));
+        return view('manager.edittestcentre', compact('testCentre'));
     }
 
     /**
@@ -83,7 +83,18 @@ class TestCentreController extends Controller
      */
     public function update(Request $request, TestCentre $testCentre)
     {
-        //
+        $request->validate([
+            'centreName' => 'required',
+            'address' => 'required',
+            'postalCode' => 'required',
+            'phone' => 'required',
+            'city' => 'required',
+        ]);
+
+        $testCentre->update($request->all());
+
+        return redirect()->route('testCentre.index')
+            ->with('success','Test Centre updated successfully.');
     }
 
     /**
@@ -96,7 +107,7 @@ class TestCentreController extends Controller
     {
         $testCentre->delete();
 
-        return redirect()->route('testcentres.index')
+        return redirect()->route('testCentre.index')
             ->with('success','Test Centre deleted successfully');
     }
 }
