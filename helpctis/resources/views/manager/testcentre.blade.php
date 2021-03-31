@@ -29,10 +29,12 @@
                 @endif
                 <div class="card-header">
                     <h3 class="card-title">DataTable Test Centre</h3>
-
-                    <div class="text-right">
-                        <a class="btn btn-success btn-sm" href="{{ route('add-testcentre') }}">Add Test Centre</a>
-                    </div>
+                    @if(Auth::user()->id == DB::table('test_centres')->count() > 0)
+                    @else
+                        <div class="text-right">
+                            <a class="btn btn-success btn-sm" href="{{ route('add-testcentre') }}">Add Test Centre</a>
+                        </div>
+                    @endif
                 </div>
 
                 <!-- /.card-header -->

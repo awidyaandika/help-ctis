@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\TestCentre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TestCentreController extends Controller
 {
@@ -38,19 +40,28 @@ class TestCentreController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id',
-            'centreName' => 'required',
-            'address' => 'required',
-            'postalCode' => 'required',
-            'phone' => 'required',
-            'city' => 'required',
-        ]);
+        $id = auth()->user()->id;
+        $data=db::table('test_centres')->where('user_id', $id)->first();
 
-        TestCentre::create($request->all());
+        if($data){
+            return redirect()->route('testCentre.index')
+                ->with('success', 'Sorry, you already created test centre.');
+        }
+        else{
+            $request->validate([
+                'user_id',
+                'centreName' => 'required',
+                'address' => 'required',
+                'postalCode' => 'required',
+                'phone' => 'required',
+                'city' => 'required',
+            ]);
 
-        return redirect()->route('testCentre.index')
-            ->with('success','Test Centre created successfully.');
+            TestCentre::create($request->all());
+
+            return redirect()->route('testCentre.index')
+                ->with('success', 'Test Centre created successfully.');
+        }
     }
 
     /**
