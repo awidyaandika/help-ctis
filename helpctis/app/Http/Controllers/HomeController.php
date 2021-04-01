@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TestCentre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -39,6 +41,9 @@ class HomeController extends Controller
 
     public function handleManager()
     {
-        return view('manager/handleManager');
+        $testCentre = TestCentre::latest()->paginate(5);
+
+        return view('manager/handleManager', compact('testCentre'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

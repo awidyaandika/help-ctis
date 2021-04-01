@@ -24,9 +24,13 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>Bali Med</h3>
+                            @foreach ($testCentre as $testcentre)
+                                @if($testcentre->user_id==Auth::user()->id)
+                                    <h3>{{$testcentre->centreName}}</h3>
 
-                            <p>Test Centre</p>
+                                    <p>Test Centre</p>
+                                @endif
+                            @endforeach
                         </div>
                         <div class="icon">
                             <i class="ion ion-home"></i>
