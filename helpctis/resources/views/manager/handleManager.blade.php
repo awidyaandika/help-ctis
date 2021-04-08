@@ -25,7 +25,7 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             @foreach ($testCentre as $testcentre)
-                                @if($testcentre->user_id==Auth::user()->id)
+                                @if($testcentre->centreName==Auth::user()->centre_name)
                                     <h3>{{$testcentre->centreName}}</h3>
 
                                     <p>Test Centre</p>
