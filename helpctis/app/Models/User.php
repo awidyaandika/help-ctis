@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'centre_id',
+        'centre_name',
         'username',
         'password',
         'name',
@@ -55,6 +55,6 @@ class User extends Authenticatable
      */
     public function testcentre()
     {
-        return $this->belongsTo(TestCentre::class, 'user_id', 'id');
+        return $this->belongsTo(TestCentre::class);
     }
 }

@@ -15,8 +15,6 @@ class CreateTestCentresTable extends Migration
     {
         Schema::create('test_centres', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('centreName', 64);
             $table->string('address')->unique();
             $table->string('postalCode', 8);

@@ -50,7 +50,7 @@
                         </thead>
                         <tbody>
                         @foreach ($testCentre as $testcentre)
-                        @if($testcentre->user_id==Auth::user()->id)
+                        @if($testcentre->centreName==Auth::user()->centre_name)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $testcentre->centreName}}</td>
@@ -61,7 +61,7 @@
                             <td>
                                 <form action="{{route('testCentre.destroy', $testcentre->id)}}" method="POST">
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('testCentre.edit', $testcentre->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('edit-testcentre', $testcentre->id) }}"><i class="nav-icon fas fa-edit"></i></a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>

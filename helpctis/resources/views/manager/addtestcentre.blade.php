@@ -44,7 +44,6 @@
                         <form action="{{ route('testCentre.store') }}" method="post">
                             @csrf
                             <div class="card-body">
-                                <input type="hidden" class="form-control" id="exampleInputText" value="{{Auth::user()->id}}" name="user_id">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Test Centre Name</label>
                                     <input type="text" class="form-control" id="exampleInputText" placeholder="Enter Test Centre name" name="centreName">

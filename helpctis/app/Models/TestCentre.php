@@ -10,7 +10,6 @@ class TestCentre extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'centreName',
         'address',
         'postalCode',
@@ -23,6 +22,6 @@ class TestCentre extends Model
      */
     public function user()
     {
-        return $this->hasMany(User::class, 'user_id', 'id');
+        return $this->hasMany(User::class);
     }
 }

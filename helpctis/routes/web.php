@@ -28,4 +28,4 @@ Route::resource('testCentre', TestCentreController::class)->middleware('manager'
 Route::get('/manager/home', [App\Http\Controllers\HomeController::class, 'handleManager'])->name('manager.route')->middleware('manager');
 Route::get('/manager/test-centre', [App\Http\Controllers\TestCentreController::class, 'index'])->name('view-testcentre')->middleware('manager');
 Route::get('/manager/test-centre/add', [App\Http\Controllers\TestCentreController::class, 'create'])->name('add-testcentre')->middleware('manager');
-Route::get('/manager/test-centre/{id}/edit', [App\Http\Controllers\TestCentreController::class, 'edit'])->name('edit-testcentre')->middleware('manager');
+Route::get('/manager/test-centre/edit', [App\Http\Controllers\TestCentreController::class, 'edit'])->name('edit-testcentre')->middleware('manager');

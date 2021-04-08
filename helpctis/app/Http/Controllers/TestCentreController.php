@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TestCentre;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -40,8 +41,8 @@ class TestCentreController extends Controller
      */
     public function store(Request $request)
     {
-        $id = auth()->user()->id;
-        $data=db::table('test_centres')->where('user_id', $id)->first();
+        $centre_name = auth()->user()->centre_name;
+        $data=db::table('test_centres')->where('centreName', $centre_name)->first();
 
         if($data){
             return redirect()->route('testCentre.index')
@@ -49,7 +50,6 @@ class TestCentreController extends Controller
         }
         else{
             $request->validate([
-                'user_id',
                 'centreName' => 'required',
                 'address' => 'required',
                 'postalCode' => 'required',
@@ -58,6 +58,10 @@ class TestCentreController extends Controller
             ]);
 
             TestCentre::create($request->all());
+
+            User::where('id', $request->user()['id'])->update([
+                'centre_name' => $request->centreName
+            ]);
 
             return redirect()->route('testCentre.index')
                 ->with('success', 'Test Centre created successfully.');

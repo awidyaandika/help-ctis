@@ -54,12 +54,12 @@
                     </a>
                 </li>
                 <li class="nav-header">OTHERS</li>
-                <li class="nav-item">
-                    <a href="iframe.html" class="nav-link">
-                        <i class="nav-icon fas fa-ellipsis-h"></i>
-                        <p>Tabbed IFrame Plugin</p>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a href="iframe.html" class="nav-link">--}}
+{{--                        <i class="nav-icon fas fa-ellipsis-h"></i>--}}
+{{--                        <p>Tabbed IFrame Plugin</p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                         <i class="nav-icon fas fa-power-off"></i>
