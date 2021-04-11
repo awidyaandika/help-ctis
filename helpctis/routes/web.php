@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestCentreController;
+use App\Http\Controllers\TestKitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,7 @@ Auth::routes();
 Route::group(['middleware' => 'manager'], function() {
     // test centre
     Route::resource('test-centre', TestCentreController::class);
+
+    // test kit
+    Route::resource('test-kit', TestKitController::class);
 });

@@ -24,6 +24,11 @@ class TestCentre extends Model
      */
     public function user()
     {
-        return $this->hasMany(User::class, 'centre_id');
+        return $this->hasMany(User::class, 'centre_name');
+    }
+
+    public function testKit()
+    {
+        return $this->hasMany(TestKit::class, 'centre_id');
     }
 }

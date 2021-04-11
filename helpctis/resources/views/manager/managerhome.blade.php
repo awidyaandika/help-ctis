@@ -46,14 +46,18 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>0</h3>
+                            @foreach ($test_centre as $testcentre)
+                                @if($testcentre->centre_name==Auth::user()->centre_name)
+                                    <h3>{{ $test_kit }}</h3>
+                                @endif
+                            @endforeach
 
                             <p>Test Kit</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-medkit"></i>
                         </div>
-                        <a href="" class="small-box-footer">More info <i
+                        <a href="{{ route('test-kit.index') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

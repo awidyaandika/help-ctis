@@ -23,19 +23,12 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    @if(Auth::user()->position = 'manager')
                     <a href="{{ url('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
-                    @elseif (Auth::user()->position = 'officer')
-                    <a href="{{ url('officer/home') }}" class="nav-link {{ Request::is('officer/home') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                    @endif
                 </li>
-                <li class="nav-header">MASTER</li>
+                <li class="nav-header">MANAGES</li>
                 <li class="nav-item">
                     <a href="{{ route('test-centre.index') }}" class="nav-link {{ Request::is('test-centre') || Request::is('test-centre/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-map-marker-alt"></i>
@@ -43,7 +36,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ Request::is('test-kit') || Request::is('test-kit/*') ? 'active' : '' }}">
+                    <a href="{{ route('test-kit.index') }}" class="nav-link {{ Request::is('test-kit') || Request::is('test-kit/*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-medkit"></i>
                         <p>Test Kit</p>
                     </a>

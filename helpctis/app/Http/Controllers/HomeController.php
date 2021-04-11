@@ -26,9 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         $test_centre = DB::table('test_centres')->get();
+        $test_kit = DB::table('test_kits')->count();
 
         if (auth()->user()->position == 'manager') {
-            return view('manager.managerhome', compact('test_centre'));
+            return view('manager.managerhome', compact('test_centre', 'test_kit'));
         }else if(auth()->user()->position == 'officer'){
             return view('officer.officerhome', compact('test_centre'));
         }else{
