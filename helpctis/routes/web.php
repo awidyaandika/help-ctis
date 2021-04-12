@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestCentreController;
 use App\Http\Controllers\TestKitController;
+use App\Http\Controllers\CentreOfficerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +25,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::group(['middleware' => 'manager'], function() {
+    //login
+    Route::get('/manager/home', [App\Http\Controllers\HomeController::class, 'index'])->name('manager-home');
     // test centre
     Route::resource('test-centre', TestCentreController::class);
-
     // test kit
     Route::resource('test-kit', TestKitController::class);
+    // centre officer
+    Route::resource('centre-officer', CentreOfficerController::class);
+});
+
+Route::group(['middleware' => 'officer'], function() {
+    //login
+    Route::get('/officer/home', [App\Http\Controllers\HomeController::class, 'index'])->name('officer-home');
 });

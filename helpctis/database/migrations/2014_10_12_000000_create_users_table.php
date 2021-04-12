@@ -19,12 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('username', 16)->unique();
             $table->string('password', 65);
             $table->string('name', 64);
-            $table->enum('gender', ['male', 'female'])->default('male');
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->date('dob')->nullable();
             $table->string('email',64)->unique();
             $table->string('phone', 20)->nullable();
             $table->string('address')->nullable();
-            $table->enum('position', ['manager', 'officer', 'tester', 'patient'])->default('officer');
+            $table->enum('position', ['manager', 'officer', 'tester', 'patient'])->nullable();
             $table->timestamps();
         });
     }

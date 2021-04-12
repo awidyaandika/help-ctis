@@ -32,6 +32,9 @@
                         <div class="card-body">
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item d-flex justify-content-between">
+                                    <b>Test Name</b> <span>{{ $testKit->testCentre->centre_name }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
                                     <b>Test Name</b> <span>{{ $testKit->test_name }}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
