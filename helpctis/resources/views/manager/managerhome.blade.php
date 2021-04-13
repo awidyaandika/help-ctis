@@ -66,11 +66,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            @foreach ($test_centre as $testcentre)
-                                @if($testcentre->centre_name==Auth::user()->centre_name)
-                                    <h3>{{ $centre_officer }}</h3>
-                                @endif
-                            @endforeach
+                            <h3>{{ $centre_officer }}</h3>
 
                             <p>Centre Officer</p>
                         </div>
@@ -78,6 +74,21 @@
                             <i class="ion ion-android-people"></i>
                         </div>
                         <a href="{{ route('centre-officer.index') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{ $tester }}</h3>
+
+                            <p>Tester</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-android-people"></i>
+                        </div>
+                        <a href="{{ route('tester.index') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

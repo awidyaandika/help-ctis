@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="dob">Date of Birth <span class="text-danger">*</span></label>
-                                        <input type="date" class="form-control" name="dob" id="dob" value="{{ $centre_officer->dob }}" required>
+                                        <input type="date" class="form-control" name="dob" id="dob" value="{{ $centre_officer->dob->format('Y-m-d') }}" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -125,7 +125,9 @@
                                 <div class="form-group">
                                     <label for="position">Position <span class="text-danger">*</span></label>
                                     <select name="position" id="position" class="form-control">
-                                        <option value="officer">Officer</option>
+                                        <option value="" selected disabled>-- Position --</option>
+                                        <option value="officer" {{ old('position') == 'officer' || (isset($centre_officer) && $centre_officer->position == 'officer') ? 'selected' : '' }}>Officer</option>
+                                        <option value="tester" {{ old('position') == 'tester' || (isset($centre_officer) && $centre_officer->position == 'tester') ? 'selected' : '' }}>Tester</option>
                                     </select>
                                 </div>
                                 <div class="form-group d-flex justify-content-between">

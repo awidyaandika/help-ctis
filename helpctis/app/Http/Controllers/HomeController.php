@@ -28,11 +28,14 @@ class HomeController extends Controller
         $test_centre = DB::table('test_centres')->get();
         $test_kit = DB::table('test_kits')->count();
         $centre_officer = DB::table('users')->where('position', 'officer')->count();
+        $tester = DB::table('users')->where('position', 'tester')->count();
 
         if (auth()->user()->position == 'manager') {
-            return view('manager.managerhome', compact('test_centre', 'test_kit', 'centre_officer'));
+            return view('manager.managerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
         }else if(auth()->user()->position == 'officer'){
-            return view('officer.officerhome', compact('test_centre', 'test_kit', 'centre_officer'));
+            return view('officer.officerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
+        }else if(auth()->user()->position == 'tester'){
+            return view('tester.testerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
         }else{
             return view('home', compact('test_centre'));
         }

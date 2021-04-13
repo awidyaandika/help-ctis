@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestCentreController;
 use App\Http\Controllers\TestKitController;
 use App\Http\Controllers\CentreOfficerController;
+use App\Http\Controllers\TesterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,16 @@ Route::group(['middleware' => 'manager'], function() {
     Route::resource('test-kit', TestKitController::class);
     // centre officer
     Route::resource('centre-officer', CentreOfficerController::class);
+    // tester
+    Route::resource('tester', TesterController::class);
 });
 
 Route::group(['middleware' => 'officer'], function() {
     //login
     Route::get('/officer/home', [App\Http\Controllers\HomeController::class, 'index'])->name('officer-home');
+});
+
+Route::group(['middleware' => 'tester'], function() {
+    //login
+    Route::get('/tester/home', [App\Http\Controllers\HomeController::class, 'index'])->name('tester-home');
 });

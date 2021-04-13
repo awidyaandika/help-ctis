@@ -56,6 +56,7 @@ class LoginController extends Controller
         $test_centre = DB::table('test_centres')->get();
         $test_kit = DB::table('test_kits')->count();
         $centre_officer = DB::table('users')->where('position', 'officer')->count();
+        $tester = DB::table('users')->where('position', 'tester')->count();
 
         $input = $request->all();
 
@@ -68,9 +69,11 @@ class LoginController extends Controller
 
         if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password']))){
             if (auth()->user()->position == 'manager') {
-                return redirect()->route('manager-home', compact('test_centre', 'test_kit', 'centre_officer'));
+                return redirect()->route('manager-home', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
             }else if(auth()->user()->position == 'officer'){
-                return redirect()->route('officer-home', compact('test_centre', 'test_kit', 'centre_officer'));
+                return redirect()->route('officer-home', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
+            }else if(auth()->user()->position == 'tester'){
+                return redirect()->route('tester-home', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
             }else{
                 return redirect()->route('home');
             }

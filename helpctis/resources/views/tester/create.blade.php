@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Centre Officer</h1>
+                    <h1 class="m-0">Tester</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('centre-officer.index') }}">Centre Officer</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('tester.index') }}">Tester</a></li>
                         <li class="breadcrumb-item active">Add Data</li>
                     </ol>
                 </div><!-- /.col -->
@@ -35,7 +35,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             @endif
-            <form action="{{ route('centre-officer.store') }}" method="POST">
+            <form action="{{ route('tester.store') }}" method="POST">
                 @csrf
                 @foreach ($testcentres as $testcentre)
                     @if($testcentre->centre_name==Auth::user()->centre_name)
@@ -129,14 +129,12 @@
                                 <div class="form-group">
                                     <label for="position">Position <span class="text-danger">*</span></label>
                                     <select name="position" id="position" class="form-control">
-                                        <option value="" selected disabled>-- Position --</option>
-                                        <option value="officer">Officer</option>
                                         <option value="tester">Tester</option>
                                     </select>
                                 </div>
                                 <div class="form-group d-flex justify-content-between">
                                     <div>
-                                        <a href="{{ route('centre-officer.index') }}" class="btn btn-sm btn-default">Back</a>
+                                        <a href="{{ route('tester.index') }}" class="btn btn-sm btn-default">Back</a>
                                     </div>
                                     <div>
                                         <button type="reset" class="btn btn-sm btn-default">Reset</button>
