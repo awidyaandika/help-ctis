@@ -62,7 +62,11 @@
             </ul>
         </nav><!-- .nav-menu -->
         @if (Route::has('login'))
-            <a href="{{ route('login') }}" class="appointment-btn scrollto">Sign In</a>
+            @auth
+                <a href="{{ route('login') }}" class="appointment-btn scrollto">Home</a>
+            @else
+                <a href="{{ route('login') }}" class="appointment-btn scrollto">Sign In</a>
+            @endauth
         @endif
 
     </div>

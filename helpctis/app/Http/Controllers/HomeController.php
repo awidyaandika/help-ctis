@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TestCentre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -26,11 +27,35 @@ class HomeController extends Controller
     public function index()
     {
         $test_centre = DB::table('test_centres')->get();
-        $test_kit = DB::table('test_kits')->count();
-        $centre_officer = DB::table('users')->where('position', 'officer')->count();
-        $tester = DB::table('users')->where('position', 'tester')->count();
-        $patient = DB::table('users')->where('position', 'patient')->count();
-        $covid_test = DB::table('covid_tests')->count();
+        $tc = Auth::user()->centre_name;
+        $ct = Auth::user()->name;
+
+        $test_kit = DB::table('test_kits')->join('test_centres', 'test_kits.centre_id', '=', 'test_centres.id')
+            ->where('test_centres.centre_name', $tc)
+            ->count();
+
+        $centre_officer = DB::table('users')->join('test_centres', 'users.centre_name', '=', 'test_centres.centre_name')
+            ->where( 'users.position', 'officer')
+            ->where('test_centres.centre_name', $tc)
+            ->count();
+
+        $tester = DB::table('users')->join('test_centres', 'users.centre_name', '=', 'test_centres.centre_name')
+            ->where( 'users.position', 'tester')
+            ->where('test_centres.centre_name', $tc)
+            ->count();
+
+        $patient = DB::table('users')->join('test_centres', 'users.centre_name', '=', 'test_centres.centre_name')
+            ->where( 'users.position', 'patient')
+            ->where('test_centres.centre_name', $tc)
+            ->count();
+
+        $covid_test = DB::table('covid_tests')->join('users', 'covid_tests.patient_name', '=', 'users.name')
+            ->where( 'covid_tests.officer_name', $ct)
+            ->count();
+
+        $covid_test_patient = DB::table('covid_tests')->join('users', 'covid_tests.patient_name', '=', 'users.name')
+            ->where( 'covid_tests.patient_name', $ct)
+            ->count();
 
         if (auth()->user()->position == 'manager')
         {
@@ -46,7 +71,7 @@ class HomeController extends Controller
         }
         else if(auth()->user()->position == 'patient')
         {
-            return view('patient.patienthome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient'));
+            return view('patient.patienthome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient', 'covid_test_patient'));
         }
         else
         {

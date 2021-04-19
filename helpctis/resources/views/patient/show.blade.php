@@ -73,14 +73,18 @@
                                 </li>
                             </ul>
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('patient.index') }}" class="btn btn-sm btn-default">Back</a>
-                                <div>
-                                    <form action="{{ route('patient.destroy', $patient->id) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
-                                </div>
+                                @if(auth()->user()->position=='tester')
+                                    <a href="{{ route('patient.index') }}" class="btn btn-sm btn-default">Back</a>
+                                    <div>
+                                        <form action="{{ route('patient.destroy', $patient->id) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </div>
+                                @elseif(auth()->user()->position=='patient')
+                                    <a href="{{ route('patient-home') }}" class="btn btn-sm btn-default">Back</a>
+                                @endif
                             </div>
                         </div>
                         <!-- /.card-body -->

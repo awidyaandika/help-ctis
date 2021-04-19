@@ -62,12 +62,12 @@
                                         <label for="gender">Gender <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" id="male" value="male" name="gender" checked>
-                                                <label class="form-check-label" for="male">Male</label>
+                                                <input class="form-check-input" type="radio" id="Male" value="Male" name="gender" checked>
+                                                <label class="form-check-label" for="Male">Male</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" id="female" value="female" name="gender">
-                                                <label class="form-check-label" for="female">Female</label>
+                                                <input class="form-check-input" type="radio" id="Female" value="Female" name="gender">
+                                                <label class="form-check-label" for="Female">Female</label>
                                             </div>
                                         </div>
                                     </div>

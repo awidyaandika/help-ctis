@@ -46,11 +46,7 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            @foreach ($test_centre as $testcentre)
-                                @if($testcentre->centre_name==Auth::user()->centre_name)
-                                    <h3>{{ $covid_test }}</h3>
-                                @endif
-                            @endforeach
+                            <h3>{{ $covid_test_patient }}</h3>
 
                             <p>Covid Test</p>
                         </div>

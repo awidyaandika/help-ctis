@@ -133,7 +133,7 @@
                     </li>
                     <li class="nav-header">MENUS</li>
                     <li class="nav-item">
-                        <a href="{{ route('patient.index') }}" class="nav-link {{ Request::is('patient') || Request::is('patient/*') ? 'active' : '' }}">
+                        <a href="{{ route('patient.show', Auth::user()->id) }}" class="nav-link {{ Request::is('patient.show') || Request::is('patient/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-user-friends"></i>
                             <p>Bio</p>
                         </a>

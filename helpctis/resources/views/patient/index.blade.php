@@ -56,29 +56,44 @@
                         </thead>
                         <tbody>
                             @foreach ($patients as $patient)
-                                @if($patient->centre_name==Auth::user()->centre_name)
-                                    <tr>
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $patient->centre_name}}</td>
-                                        <td>{{ $patient->username}}</td>
-                                        <td>{{ $patient->name}}</td>
-                                        <td>{{ $patient->gender}}</td>
-                                        <td>{{ $patient->email}}</td>
-                                        <td>{{ $patient->phone}}</td>
-                                        <td>{{ $patient->address}}</td>
-                                        @if(auth()->user()->position=='tester')
-                                            <td>
-                                                <form action="{{route('patient.destroy', $patient->id)}}" method="POST">
-                                                    <input name="_method" type="hidden" value="DELETE">
-                                                    <a class="btn btn-info btn-sm" href="{{ route('patient.show', $patient->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="{{ route('patient.edit', $patient->id) }}"><i class="nav-icon fas fa-edit"></i></a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
-                                                </form>
-                                            </td>
-                                        @endif
-                                    </tr>
+                                @if(auth()->user()->position=='tester' or auth()->user()->position=='officer')
+                                    @if($patient->centre_name==Auth::user()->centre_name)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $patient->centre_name}}</td>
+                                            <td>{{ $patient->username}}</td>
+                                            <td>{{ $patient->name}}</td>
+                                            <td>{{ $patient->gender}}</td>
+                                            <td>{{ $patient->email}}</td>
+                                            <td>{{ $patient->phone}}</td>
+                                            <td>{{ $patient->address}}</td>
+                                            @if(auth()->user()->position=='tester')
+                                                <td>
+                                                    <form action="{{route('patient.destroy', $patient->id)}}" method="POST">
+                                                        <input name="_method" type="hidden" value="DELETE">
+                                                        <a class="btn btn-info btn-sm" href="{{ route('patient.show', $patient->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                        <a class="btn btn-warning btn-sm" href="{{ route('patient.edit', $patient->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
+                                                    </form>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endif
+                                @elseif(auth()->user()->position=='patient')
+                                    @if($patient->name==Auth::user()->name)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $patient->centre_name}}</td>
+                                            <td>{{ $patient->username}}</td>
+                                            <td>{{ $patient->name}}</td>
+                                            <td>{{ $patient->gender}}</td>
+                                            <td>{{ $patient->email}}</td>
+                                            <td>{{ $patient->phone}}</td>
+                                            <td>{{ $patient->address}}</td>
+                                        </tr>
+                                    @endif
                                 @endif
                             @endforeach
                         </tbody>

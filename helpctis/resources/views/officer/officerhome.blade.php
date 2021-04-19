@@ -46,11 +46,8 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            @foreach ($test_centre as $testcentre)
-                                @if($testcentre->centre_name==Auth::user()->centre_name)
-                                    <h3>{{ $test_kit }}</h3>
-                                @endif
-                            @endforeach
+                            <h3>{{ $test_kit }}</h3>
+
 
                             <p>Test Kit</p>
                         </div>
@@ -66,11 +63,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            @foreach ($test_centre as $testcentre)
-                                @if($testcentre->centre_name==Auth::user()->centre_name)
-                                    <h3>{{ $centre_officer }}</h3>
-                                @endif
-                            @endforeach
+                            <h3>{{ $centre_officer }}</h3>
 
                             <p>Centre Officer</p>
                         </div>
@@ -85,13 +78,10 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            @foreach ($test_centre as $testcentre)
-                                @if($testcentre->centre_name==Auth::user()->centre_name)
-                                    <h3>{{ $covid_test }}</h3>
-                                @endif
-                            @endforeach
+                            <h3>{{ $patient }}</h3>
 
-                            <p>Covid Test</p>
+
+                            <p>Patient</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-android-people"></i>

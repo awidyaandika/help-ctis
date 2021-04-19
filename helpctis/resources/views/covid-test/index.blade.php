@@ -58,31 +58,48 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $covidtest)
-                                @if($covidtest->centre_name==Auth::user()->centre_name)
-                                    <tr>
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $covidtest->centre_name}}</td>
-                                        <td>{{ $covidtest->officer_name}}</td>
-                                        <td>{{ $covidtest->patient_name}}</td>
-                                        <td>{{ $covidtest->test_date}}</td>
-                                        <td>{{ $covidtest->test_name}}</td>
-                                        <td>{{ $covidtest->symptomps}}</td>
-                                        <td>{{ $covidtest->result_date}}</td>
-                                        <td>{{ $covidtest->status}}</td>
-                                        <td>{{ $covidtest->result}}</td>
-                                        @if(auth()->user()->position=='tester')
-                                            <td>
-                                                <form action="{{route('covid-test.destroy', $covidtest->id)}}" method="POST">
-                                                    <input name="_method" type="hidden" value="DELETE">
-                                                    <a class="btn btn-info btn-sm" href="{{ route('covid-test.show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="{{ route('covid-test.edit', $covidtest->id) }}"><i class="nav-icon fas fa-edit"></i></a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
-                                                </form>
-                                            </td>
-                                        @endif
-                                    </tr>
+                                @if(auth()->user()->position=='tester' or auth()->user()->position=='officer')
+                                    @if($covidtest->centre_name==Auth::user()->centre_name)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $covidtest->centre_name}}</td>
+                                            <td>{{ $covidtest->officer_name}}</td>
+                                            <td>{{ $covidtest->patient_name}}</td>
+                                            <td>{{ $covidtest->test_date}}</td>
+                                            <td>{{ $covidtest->test_name}}</td>
+                                            <td>{{ $covidtest->symptomps}}</td>
+                                            <td>{{ $covidtest->result_date}}</td>
+                                            <td>{{ $covidtest->status}}</td>
+                                            <td>{{ $covidtest->result}}</td>
+                                            @if(auth()->user()->position=='tester')
+                                                <td>
+                                                    <form action="{{route('covid-test.destroy', $covidtest->id)}}" method="POST">
+                                                        <input name="_method" type="hidden" value="DELETE">
+                                                        <a class="btn btn-info btn-sm" href="{{ route('covid-test.show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                        <a class="btn btn-warning btn-sm" href="{{ route('covid-test.edit', $covidtest->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
+                                                    </form>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endif
+                                @elseif(auth()->user()->position=='patient')
+                                    @if($covidtest->patient_name==Auth::user()->name)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $covidtest->centre_name}}</td>
+                                            <td>{{ $covidtest->officer_name}}</td>
+                                            <td>{{ $covidtest->patient_name}}</td>
+                                            <td>{{ $covidtest->test_date}}</td>
+                                            <td>{{ $covidtest->test_name}}</td>
+                                            <td>{{ $covidtest->symptomps}}</td>
+                                            <td>{{ $covidtest->result_date}}</td>
+                                            <td>{{ $covidtest->status}}</td>
+                                            <td>{{ $covidtest->result}}</td>
+                                        </tr>
+                                    @endif
                                 @endif
                             @endforeach
                         </tbody>
