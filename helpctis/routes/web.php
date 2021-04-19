@@ -5,6 +5,8 @@ use App\Http\Controllers\TestCentreController;
 use App\Http\Controllers\TestKitController;
 use App\Http\Controllers\CentreOfficerController;
 use App\Http\Controllers\TesterController;
+use App\Http\Controllers\CovidTestController;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::group(['middleware' => 'manager'], function() {
-    //login
-    Route::get('/manager/home', [App\Http\Controllers\HomeController::class, 'index'])->name('manager-home');
+Route::group(['middleware' => 'auth'], function() {
+//    MANAGER & OFFICER
     // test centre
     Route::resource('test-centre', TestCentreController::class);
     // test kit
@@ -36,6 +37,17 @@ Route::group(['middleware' => 'manager'], function() {
     Route::resource('centre-officer', CentreOfficerController::class);
     // tester
     Route::resource('tester', TesterController::class);
+
+//TESTER
+    // covid test
+    Route::resource('covid-test', CovidTestController::class);
+    //patient
+    Route::resource('patient', PatientController::class);
+});
+
+Route::group(['middleware' => 'manager'], function() {
+    //login
+    Route::get('/manager/home', [App\Http\Controllers\HomeController::class, 'index'])->name('manager-home');
 });
 
 Route::group(['middleware' => 'officer'], function() {
@@ -45,5 +57,11 @@ Route::group(['middleware' => 'officer'], function() {
 
 Route::group(['middleware' => 'tester'], function() {
     //login
-    Route::get('/tester/home', [App\Http\Controllers\HomeController::class, 'index'])->name('tester-home');
+    Route::get('/testers/home', [App\Http\Controllers\HomeController::class, 'index'])->name('tester-home');
+});
+
+Route::group(['middleware' => 'patient'], function() {
+    //login
+    Route::get('/patients/home', [App\Http\Controllers\HomeController::class, 'index'])->name('patient-home');
+
 });

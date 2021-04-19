@@ -52,7 +52,12 @@
                                 @endforeach
                                 <div class="form-group">
                                     <label for="test_name">Test Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="test_name" id="test_name" required>
+                                    <select name="test_name" id="test_name" class="form-control">
+                                        <option value="" selected disabled>-- Test Name --</option>
+                                        <option value="Swab">Swab</option>
+                                        <option value="PCR">PCR</option>
+                                        <option value="Rapid">Rapid Test</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="stock">Stock <span class="text-danger">*</span></label>

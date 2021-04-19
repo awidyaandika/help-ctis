@@ -66,7 +66,11 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>{{ $centre_officer }}</h3>
+                            @foreach ($test_centre as $testcentre)
+                                @if($testcentre->centre_name==Auth::user()->centre_name)
+                                    <h3>{{ $centre_officer }}</h3>
+                                @endif
+                            @endforeach
 
                             <p>Centre Officer</p>
                         </div>
@@ -81,7 +85,11 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>{{ $tester }}</h3>
+                            @foreach ($test_centre as $testcentre)
+                                @if($testcentre->centre_name==Auth::user()->centre_name)
+                                    <h3>{{ $tester }}</h3>
+                                @endif
+                            @endforeach
 
                             <p>Tester</p>
                         </div>

@@ -46,13 +46,14 @@
                             <form action="{{ route('test-kit.update', $testKit->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <input type="hidden" class="form-control" name="centre_id" id="centre_id" value="{{$testKit->centre_id}}" required>
                                 <div class="form-group">
                                     <label for="test_name">Test Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('test_name') is-invalid @enderror" name="test_name" id="test_name" value="{{ $testKit->test_name }}" required>
-                                    @error('test_name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <select name="test_name" id="test_name" class="form-control">
+                                        <option value="" selected disabled>-- Test Name --</option>
+                                        <option value="Swab" {{ old('test_name') == 'Swab' || (isset($testKit) && $testKit->test_name == 'Swab') ? 'selected' : '' }}>Swab</option>
+                                        <option value="PCR" {{ old('test_name') == 'PCR' || (isset($testKit) && $testKit->test_name == 'PCR') ? 'selected' : '' }}>PCR</option>
+                                        <option value="Rapid" {{ old('test_name') == 'Rapid' || (isset($testKit) && $testKit->test_name == 'Rapid') ? 'selected' : '' }}>Rapid</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Stock <span class="text-danger">*</span></label>

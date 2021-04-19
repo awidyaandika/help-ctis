@@ -29,14 +29,27 @@ class HomeController extends Controller
         $test_kit = DB::table('test_kits')->count();
         $centre_officer = DB::table('users')->where('position', 'officer')->count();
         $tester = DB::table('users')->where('position', 'tester')->count();
+        $patient = DB::table('users')->where('position', 'patient')->count();
+        $covid_test = DB::table('covid_tests')->count();
 
-        if (auth()->user()->position == 'manager') {
-            return view('manager.managerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
-        }else if(auth()->user()->position == 'officer'){
-            return view('officer.officerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
-        }else if(auth()->user()->position == 'tester'){
-            return view('tester.testerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester'));
-        }else{
+        if (auth()->user()->position == 'manager')
+        {
+            return view('manager.managerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient'));
+        }
+        else if(auth()->user()->position == 'officer')
+        {
+            return view('officer.officerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient'));
+        }
+        else if(auth()->user()->position == 'tester')
+        {
+            return view('tester.testerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient'));
+        }
+        else if(auth()->user()->position == 'patient')
+        {
+            return view('patient.patienthome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient'));
+        }
+        else
+        {
             return view('home', compact('test_centre'));
         }
     }
@@ -49,5 +62,15 @@ class HomeController extends Controller
     public function handleManager()
     {
         return view('manager.managerhome');
+    }
+
+    public function handleTester()
+    {
+        return view('tester.testerhome');
+    }
+
+    public function handlePatient()
+    {
+        return view('patient.patienthome');
     }
 }

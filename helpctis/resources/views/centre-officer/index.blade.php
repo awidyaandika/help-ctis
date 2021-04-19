@@ -30,7 +30,9 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between flex-wrap align-items-center">
                         <h3 class="card-title">List of Centre Officer</h3>
-                        <a href="{{ route('centre-officer.create') }}" class="btn btn-sm btn-primary">Add Data</a>
+                        @if(auth()->user()->position=='manager')
+                            <a href="{{ route('centre-officer.create') }}" class="btn btn-sm btn-primary">Add Data</a>
+                        @endif
                     </div>
                 </div>
 
@@ -40,11 +42,16 @@
                         <thead>
                         <tr>
                             <th>No</th>
+                            <th>Centre Name</th>
                             <th>Username</th>
                             <th>Name</th>
+                            <th>Gender</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Action</th>
+                            <th>Address</th>
+                            @if(auth()->user()->position=='manager')
+                                <th>Action</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -52,20 +59,25 @@
                             @if($centreofficer->centre_name==Auth::user()->centre_name)
                                 <tr>
                                     <td>{{ ++$i }}</td>
+                                    <td>{{ $centreofficer->centre_name}}</td>
                                     <td>{{ $centreofficer->username}}</td>
                                     <td>{{ $centreofficer->name}}</td>
+                                    <td>{{ $centreofficer->gender}}</td>
                                     <td>{{ $centreofficer->email}}</td>
                                     <td>{{ $centreofficer->phone}}</td>
-                                    <td>
-                                        <form action="{{route('centre-officer.destroy', $centreofficer->id)}}" method="POST">
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <a class="btn btn-info btn-sm" href="{{ route('centre-officer.show', $centreofficer->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                            <a class="btn btn-warning btn-sm" href="{{ route('centre-officer.edit', $centreofficer->id) }}"><i class="nav-icon fas fa-edit"></i></a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
-                                        </form>
-                                    </td>
+                                    <td>{{ $centreofficer->address}}</td>
+                                    @if(auth()->user()->position=='manager')
+                                        <td>
+                                            <form action="{{route('centre-officer.destroy', $centreofficer->id)}}" method="POST">
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <a class="btn btn-info btn-sm" href="{{ route('centre-officer.show', $centreofficer->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                <a class="btn btn-warning btn-sm" href="{{ route('centre-officer.edit', $centreofficer->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
+                                            </form>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endif
                         @endforeach
@@ -73,11 +85,16 @@
                         <tfoot>
                         <tr>
                             <th>No</th>
+                            <th>Centre Name</th>
                             <th>Username</th>
                             <th>Name</th>
+                            <th>Gender</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Action</th>
+                            <th>Address</th>
+                            @if(auth()->user()->position=='manager')
+                                <th>Action</th>
+                            @endif
                         </tr>
                         </tfoot>
                     </table>

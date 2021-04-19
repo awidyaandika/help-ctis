@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(TestCentre::class, 'centre_name');
     }
+
+    public function covidTest()
+    {
+        return $this->hasMany(CovidTest::class);
+    }
 }

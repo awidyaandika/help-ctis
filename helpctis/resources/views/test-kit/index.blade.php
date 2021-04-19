@@ -30,7 +30,9 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between flex-wrap align-items-center">
                         <h3 class="card-title">List of Test Kit</h3>
-                        <a href="{{ route('test-kit.create') }}" class="btn btn-sm btn-primary">Add Data</a>
+                        @if(auth()->user()->position=='manager')
+                            <a href="{{ route('test-kit.create') }}" class="btn btn-sm btn-primary">Add Data</a>
+                        @endif
                     </div>
                 </div>
 
@@ -43,7 +45,9 @@
                             <th>Test Centre</th>
                             <th>Test Name</th>
                             <th>Stock</th>
-                            <th>Action</th>
+                            @if(auth()->user()->position=='manager')
+                                <th>Action</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -54,16 +58,18 @@
                                     <td>{{ $testkit->centre_name}}</td>
                                     <td>{{ $testkit->test_name}}</td>
                                     <td>{{ $testkit->stock}}</td>
-                                    <td>
-                                        <form action="{{route('test-kit.destroy', $testkit->id)}}" method="POST">
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <a class="btn btn-info btn-sm" href="{{ route('test-kit.show', $testkit->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                            <a class="btn btn-warning btn-sm" href="{{ route('test-kit.edit', $testkit->id) }}"><i class="nav-icon fas fa-edit"></i></a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
-                                        </form>
-                                    </td>
+                                    @if(auth()->user()->position=='manager')
+                                        <td>
+                                            <form action="{{route('test-kit.destroy', $testkit->id)}}" method="POST">
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <a class="btn btn-info btn-sm" href="{{ route('test-kit.show', $testkit->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                <a class="btn btn-warning btn-sm" href="{{ route('test-kit.edit', $testkit->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
+                                            </form>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endif
                         @endforeach
@@ -74,7 +80,9 @@
                             <th>Test Centre</th>
                             <th>Test Name</th>
                             <th>Stock</th>
-                            <th>Action</th>
+                            @if(auth()->user()->position=='manager')
+                                <th>Action</th>
+                            @endif
                         </tr>
                         </tfoot>
                     </table>

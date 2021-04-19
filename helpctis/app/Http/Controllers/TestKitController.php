@@ -87,7 +87,6 @@ class TestKitController extends Controller
     public function update(Request $request, TestKit $testKit)
     {
         $request->validate([
-            'centre_id' => 'required',
             'test_name' => 'required',
             'stock' => 'required',
         ]);
