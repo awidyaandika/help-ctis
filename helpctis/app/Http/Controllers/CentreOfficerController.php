@@ -57,10 +57,20 @@ class CentreOfficerController extends Controller
 
         $request['password'] = bcrypt($request->password);
 
+        $data = DB::table('users')
+            ->where('position', 'tester')
+            ->where('position', $request->position)
+            ->first();
+
         User::create($request->all());
 
-        return redirect()->route('centre-officer.index')
-            ->with('success','Data created successfully');
+        if($data){
+            return redirect()->route('tester.index')
+                ->with('success','Data created successfully');
+        }else{
+            return redirect()->route('centre-officer.index')
+                ->with('success','Data created successfully');
+        }
     }
 
     /**

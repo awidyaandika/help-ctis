@@ -6,6 +6,7 @@ use App\Models\TestCentre;
 use App\Models\TestKit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class TestKitController extends Controller
 {
@@ -49,10 +50,22 @@ class TestKitController extends Controller
             'stock' => 'required',
         ]);
 
-        TestKit::create($request->all());
+        $data = DB::table('test_kits')
+            ->join('test_centres', 'test_kits.centre_id', '=', 'test_centres.id')
+            ->join('users', 'test_centres.centre_name', '=', 'users.centre_name')
+            ->where('users.name', Auth::user()->name)
+            ->where('test_name', $request->test_name)
+            ->first();
 
-        return redirect()->route('test-kit.index')
-            ->with('success','Data created successfully');
+        if($data){
+            return redirect()->route('test-kit.index')
+                ->with('success','Sorry, you cannot add the same test name!');
+        }else{
+            TestKit::create($request->all());
+
+            return redirect()->route('test-kit.index')
+                ->with('success','Data created successfully');
+        }
     }
 
     /**

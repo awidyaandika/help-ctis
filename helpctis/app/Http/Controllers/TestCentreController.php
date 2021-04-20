@@ -19,7 +19,13 @@ class TestCentreController extends Controller
     {
         $testcentres = TestCentre::latest()->paginate(5);
 
-        return view('test-centre.index', compact('testcentres'))
+        $data = DB::table('test_centres')
+            ->join('users', 'test_centres.centre_name', '=', 'users.centre_name')
+            ->where('test_centres.centre_name', Auth::user()->centre_name)
+            ->where('users.name', Auth::user()->name)
+            ->count();
+
+        return view('test-centre.index', compact('testcentres', 'data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

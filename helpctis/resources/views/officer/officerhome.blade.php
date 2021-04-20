@@ -80,7 +80,6 @@
                         <div class="inner">
                             <h3>{{ $patient }}</h3>
 
-
                             <p>Patient</p>
                         </div>
                         <div class="icon">

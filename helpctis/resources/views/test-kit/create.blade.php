@@ -56,7 +56,7 @@
                                         <option value="" selected disabled>-- Test Name --</option>
                                         <option value="Swab">Swab</option>
                                         <option value="PCR">PCR</option>
-                                        <option value="Rapid">Rapid Test</option>
+                                        <option value="Rapid">Rapid</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

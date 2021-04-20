@@ -93,10 +93,8 @@ class CovidTestController extends Controller
     {
         $user = DB::table('users')->where('position', 'patient')->paginate(5);
         $testcentres = TestCentre::all();
-        $data = DB::table('test_kits')->join('test_centres', 'test_kits.centre_id', '=', 'test_centres.id')
-            ->select(['test_kits.*', 'test_centres.*'])->get();
 
-        return view('covid-test.edit', compact('user', 'testcentres', 'covidTest', 'data'));
+        return view('covid-test.edit', compact('user', 'testcentres', 'covidTest'));
     }
 
     /**
@@ -109,16 +107,12 @@ class CovidTestController extends Controller
     public function update(Request $request, CovidTest $covidTest)
     {
         $request->validate([
-            'patient_name' => 'required',
             'test_date' => 'required',
-            'test_name' => 'required',
             'symptomps' => 'required',
             'result_date' => 'required',
             'status' => 'required',
             'result' => 'required',
         ]);
-
-        TestKit::where('test_name', $request->test_name)->decrement('stock', 1);
 
         $covidTest->update($request->all());
 

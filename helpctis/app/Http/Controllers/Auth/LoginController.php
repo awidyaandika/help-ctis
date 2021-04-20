@@ -75,7 +75,7 @@ class LoginController extends Controller
             {
                 return redirect()->route('tester-home');
             }
-            else if(auth()->user()->position == 'tester')
+            else if(auth()->user()->position == 'patient')
             {
                 return redirect()->route('patient-home');
             }

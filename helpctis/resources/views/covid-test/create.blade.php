@@ -50,6 +50,8 @@
                                         <input type="hidden" class="form-control" name="officer_name" id="officer_name" value="{{Auth::user()->name}}" required>
                                     @endif
                                 @endforeach
+                                <input type="hidden" class="form-control" name="test_date" id="test_date" value="{{ date('Y-m-d') }}" required>
+
                                 <div class="form-group">
                                     <label for="patient_name">Patient <span class="text-danger">*</span></label>
                                     <select class="form-control" name="patient_name" id="patient_name" required>
@@ -62,8 +64,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="test_date">Test Date <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="test_date" id="test_date" required>
+                                    <label for="">Test Date <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" name="" id="" value="{{ date('Y-m-d') }}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="test_name">Type Test <span class="text-danger">*</span></label>

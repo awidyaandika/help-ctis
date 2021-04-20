@@ -52,22 +52,24 @@
                                         <option selected disabled value="">-- Patient Name --</option>
                                         @foreach ($user as $testcentres)
                                             @if($testcentres->centre_name==Auth::user()->centre_name)
-                                                <option {{ old('name') == $testcentres->name || (isset($testcentres) && $testcentres->name == $testcentres->name) ? 'selected' : '' }} value="{{ $testcentres->name }}">{{ $testcentres->name }}</option>
+                                                <option disabled {{ old('name') == $testcentres->name || (isset($testcentres) && $testcentres->name == $testcentres->name) ? 'selected' : '' }} value="{{ $testcentres->name }}">{{ $testcentres->name }}</option>
                                             @endif
                                         @endforeach
+                                        <input type="hidden" class="form-control" name="test_date" id="test_date" value="{{ $covidTest->test_date }}" required>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="test_date">Test Date <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="test_date" id="test_date" value="{{ $covidTest->test_date->format('Y-m-d') }}" required>
+                                    <label for="">Test Date <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" name="" id="" value="{{ $covidTest->test_date->format('Y-m-d') }}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="test_name">Type Test <span class="text-danger">*</span></label>
                                     <select name="test_name" id="test_name" class="form-control">
                                         <option value="" selected disabled>-- Type Test --</option>
-                                        <option value="Swab" {{ old('test_name') == 'Swab' || (isset($covidTest) && $covidTest->test_name == 'Swab') ? 'selected' : '' }}>Swab</option>
-                                        <option value="PCR" {{ old('test_name') == 'PCR' || (isset($covidTest) && $covidTest->test_name == 'PCR') ? 'selected' : '' }}>PCR</option>
-                                        <option value="Rapid" {{ old('test_name') == 'Rapid' || (isset($covidTest) && $covidTest->test_name == 'Rapid') ? 'selected' : '' }}>Rapid</option>
+                                        <option value="Swab" disabled {{ old('test_name') == 'Swab' || (isset($covidTest) && $covidTest->test_name == 'Swab') ? 'selected' : '' }}>Swab</option>
+                                        <option value="PCR" disabled {{ old('test_name') == 'PCR' || (isset($covidTest) && $covidTest->test_name == 'PCR') ? 'selected' : '' }}>PCR</option>
+                                        <option value="Rapid" disabled {{ old('test_name') == 'Rapid' || (isset($covidTest) && $covidTest->test_name == 'Rapid') ? 'selected' : '' }}>Rapid</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

@@ -78,7 +78,9 @@
                                     <form action="{{ route('centre-officer.destroy', $centre_officer->id) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        @if(auth()->user()->position=='manager')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        @endif
                                     </form>
                                 </div>
                             </div>

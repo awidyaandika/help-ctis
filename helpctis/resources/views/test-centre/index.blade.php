@@ -31,7 +31,9 @@
                     <div class="d-flex justify-content-between flex-wrap align-items-center">
                         <h3 class="card-title">List of Test Centre</h3>
                         @if(auth()->user()->position=='manager')
-                            <a href="{{ route('test-centre.create') }}" class="btn btn-sm btn-primary">Add Data</a>
+                            @if($data < 1)
+                                <a href="{{ route('test-centre.create') }}" class="btn btn-sm btn-primary">Add Data</a>
+                            @endif
                         @endif
                     </div>
                 </div>

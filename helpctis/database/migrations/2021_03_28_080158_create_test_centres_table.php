@@ -16,7 +16,7 @@ class CreateTestCentresTable extends Migration
         Schema::create('test_centres', function (Blueprint $table) {
             $table->id();
             $table->string('centre_name', 64)->unique();
-            $table->string('address')->unique();
+            $table->string('address');
             $table->string('postal_code', 8);
             $table->string('phone', 20);
             $table->string('city', 50);
