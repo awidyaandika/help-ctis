@@ -43,6 +43,14 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             @endif
+                            @if ($message = Session::get('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ $message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                             <form action="{{ route('covid-test.store') }}" method="POST">
                                 @csrf
                                 @foreach ($testcentres as $testcentre)
@@ -80,11 +88,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="symptomps">Symptomps <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" name="symptomps" id="symptomps" required></textarea>
+                                    <textarea class="form-control @error('symptomps') is-invalid @enderror" name="symptomps" id="symptomps" required></textarea>
+                                    @error('symptomps')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="result_date">Result Date <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="result_date" id="result_date" required>
+                                    <input type="date" class="form-control" name="result_date" id="resultdate" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status <span class="text-danger">*</span></label>

@@ -90,7 +90,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" name="address" id="address" required>{{ $tester->address }}</textarea>
+                                    <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" required>{{ $tester->address }}</textarea>
+                                    @error('address')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->

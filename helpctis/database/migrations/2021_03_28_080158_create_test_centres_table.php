@@ -15,11 +15,11 @@ class CreateTestCentresTable extends Migration
     {
         Schema::create('test_centres', function (Blueprint $table) {
             $table->id();
-            $table->string('centre_name', 64)->unique();
-            $table->string('address');
+            $table->string('centre_name', 32)->unique();
+            $table->string('address')->unique();
             $table->string('postal_code', 8);
-            $table->string('phone', 20);
-            $table->string('city', 50);
+            $table->string('phone', 20)->unique();
+            $table->string('city', 32);
             $table->timestamps();
         });
     }

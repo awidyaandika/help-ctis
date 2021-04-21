@@ -16,6 +16,8 @@
             <div class="info">
                 @if(auth()->user()->position=='patient')
                     <a href="{{ route('patient.show', Auth::user()->id) }}" class="d-block">{{ auth()->user()->name }}</a>
+                @elseif(auth()->user()->position=='manager')
+                    <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                 @else
                     <a href="{{ route('centre-officer.show', Auth::user()->id) }}" class="d-block">{{ auth()->user()->name }}</a>
                 @endif
@@ -33,13 +35,6 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-header">MENUS</li>
-                    <li class="nav-item">
-                        <a href="{{ route('test-centre.index') }}" class="nav-link {{ Request::is('test-centre') || Request::is('test-centre/*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-clinic-medical"></i>
-                            <p>Test Centre</p>
-                        </a>
-                    </li>
                     @php
                         $name = Auth::user()->name;
                         $testcentre = DB::table('test_centres')->join('users', 'test_centres.centre_name', '=', 'users.centre_name')
@@ -47,6 +42,13 @@
                                         ->count();
                     @endphp
                     @if($testcentre > 0)
+                        <li class="nav-header">MENUS</li>
+                        <li class="nav-item">
+                            <a href="{{ route('test-centre.index') }}" class="nav-link {{ Request::is('test-centre') || Request::is('test-centre/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-clinic-medical"></i>
+                                <p>Test Centre</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('test-kit.index') }}" class="nav-link {{ Request::is('test-kit') || Request::is('test-kit/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-medkit"></i>

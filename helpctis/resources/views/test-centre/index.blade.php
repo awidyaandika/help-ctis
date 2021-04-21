@@ -26,6 +26,14 @@
                     </button>
                 </div>
             @endif
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between flex-wrap align-items-center">

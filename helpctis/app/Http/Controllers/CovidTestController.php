@@ -8,6 +8,7 @@ use App\Models\TestKit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class CovidTestController extends Controller
 {
@@ -18,15 +19,13 @@ class CovidTestController extends Controller
      */
     public function index()
     {
-        $covidtest = DB::table('users')->where('position', 'patient')->paginate(5);
-
         $data = DB::table('covid_tests')
-            ->join('users', 'users.name', '=', 'covid_tests.officer_name')
-            ->join('test_kits', 'test_kits.test_name', '=', 'covid_tests.test_name')
+            ->join('users', 'covid_tests.officer_name', '=', 'users.name')
             ->join('test_centres', 'test_centres.centre_name', '=', 'users.centre_name')
-            ->select(['covid_tests.*', 'users.name', 'test_kits.test_name', 'test_centres.centre_name'])->get();
+            ->where('test_centres.centre_name', Auth::user()->centre_name)
+            ->select(['covid_tests.*', 'test_centres.centre_name'])->paginate(5);
 
-        return view('covid-test.index', compact('covidtest', 'data'))
+        return view('covid-test.index', compact( 'data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -54,17 +53,29 @@ class CovidTestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'officer_name' => 'required',
-            'patient_name' => 'required',
+            'officer_name' => 'required|max:64',
+            'patient_name' => 'required|max:64',
             'test_date' => 'required',
             'test_name' => 'required',
-            'symptomps' => 'required',
+            'symptomps' => 'required|max:255',
             'result_date' => 'required',
             'status' => 'required',
-            'result' => 'required',
+            'result' => 'required|max:100',
         ]);
 
-        TestKit::where('test_name', $request->test_name)->decrement('stock', 1);
+        $data = DB::table('test_kits')
+            ->join('test_centres', 'test_kits.centre_id', '=', 'test_centres.id')
+            ->where('test_centres.centre_name', Auth::user()->centre_name)
+            ->where('test_kits.test_name', $request->test_name)
+            ->where('test_kits.stock', '>' ,'0')
+            ->first();
+
+        if($data){
+            TestKit::where('test_name', $request->test_name)->decrement('stock', 1);
+        }else{
+            return redirect()->route('covid-test.create')
+                ->with('error','Sorry, test kit stock is empty!');
+        }
 
         CovidTest::create($request->all());
 
@@ -108,10 +119,10 @@ class CovidTestController extends Controller
     {
         $request->validate([
             'test_date' => 'required',
-            'symptomps' => 'required',
+            'symptomps' => 'required|max:255',
             'result_date' => 'required',
             'status' => 'required',
-            'result' => 'required',
+            'result' => 'required|max:100',
         ]);
 
         $covidTest->update($request->all());

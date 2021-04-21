@@ -96,8 +96,17 @@
                         <div class="icon">
                             <i class="ion ion-android-people"></i>
                         </div>
-                        <a href="{{ route('covid-test.index') }}" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        @php
+                            $tc = Auth::user()->centre_name;
+                            $ct_patient = DB::table('users')->join('test_centres', 'users.centre_name', '=', 'test_centres.centre_name')
+                                ->where( 'users.position', 'patient')
+                                ->where('test_centres.centre_name', $tc)
+                                ->count();
+                        @endphp
+                        @if($ct_patient > 0)
+                            <a href="{{ route('covid-test.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>

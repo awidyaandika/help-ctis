@@ -47,7 +47,7 @@ class TestKitController extends Controller
         $request->validate([
             'centre_id' => 'required',
             'test_name' => 'required',
-            'stock' => 'required',
+            'stock' => 'required|max:11',
         ]);
 
         $data = DB::table('test_kits')
@@ -58,8 +58,8 @@ class TestKitController extends Controller
             ->first();
 
         if($data){
-            return redirect()->route('test-kit.index')
-                ->with('success','Sorry, you cannot add the same test name!');
+            return redirect()->route('test-kit.create')
+                ->with('error','Sorry, you cannot add the same test name!');
         }else{
             TestKit::create($request->all());
 
@@ -101,7 +101,7 @@ class TestKitController extends Controller
     {
         $request->validate([
             'test_name' => 'required',
-            'stock' => 'required',
+            'stock' => 'required|max:11',
         ]);
 
         $testKit->update($request->all());

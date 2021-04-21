@@ -6,6 +6,7 @@ use App\Models\TestCentre;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class PatientController extends Controller
 {
@@ -44,13 +45,13 @@ class PatientController extends Controller
         $request->validate([
             'centre_name' => 'required',
             'password' => ['required', 'string', 'confirmed'],
-            'username' => 'required',
-            'name' => 'required',
+            'username' => 'required|unique:users|max:16',
+            'name' => 'required|max:64',
             'gender' => 'required',
             'dob' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
+            'email' => 'required|unique:users|max:64',
+            'phone' => 'required|unique:users|max:20',
+            'address' => 'required|max:255',
             'position' => 'required',
         ]);
 
@@ -98,6 +99,23 @@ class PatientController extends Controller
         $user = User::find($id);
 
         $request->validate([
+            'name' => 'required|max:64',
+            'address' => 'required|max:255',
+            'username' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+                'max:16'
+            ],
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+                'max:64'
+            ],
+            'phone' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+                'max:20'
+            ],
             'password' => 'confirmed',
         ]);
 

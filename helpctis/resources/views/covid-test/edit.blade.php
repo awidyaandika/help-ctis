@@ -74,11 +74,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="symptomps">Symptomps <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" name="symptomps" id="symptomps" required>{{ $covidTest->symptomps }}</textarea>
+                                    <textarea class="form-control @error('symptomps') is-invalid @enderror" name="symptomps" id="symptomps" required>{{ $covidTest->symptomps }}</textarea>
+                                    @error('symptomps')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="result_date">Result Date <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="result_date" id="result_date" value="{{ $covidTest->result_date->format('Y-m-d') }}" required>
+                                    <input type="date" class="form-control" name="result_date" id="resultdate" value="{{ $covidTest->result_date->format('Y-m-d') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status <span class="text-danger">*</span></label>

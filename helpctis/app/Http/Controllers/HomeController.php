@@ -57,9 +57,21 @@ class HomeController extends Controller
             ->where( 'covid_tests.patient_name', $ct)
             ->count();
 
+        $name = Auth::user()->name;
+        $testcentre = DB::table('test_centres')->join('users', 'test_centres.centre_name', '=', 'users.centre_name')
+            ->where('users.name', $name)
+            ->count();
+
         if (auth()->user()->position == 'manager')
         {
-            return view('manager.managerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient'));
+            if($testcentre < 1)
+            {
+                return view('test-centre.create');
+            }
+            else
+            {
+                return view('manager.managerhome', compact('test_centre', 'test_kit', 'centre_officer', 'tester', 'covid_test', 'patient'));
+            }
         }
         else if(auth()->user()->position == 'officer')
         {

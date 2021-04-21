@@ -18,7 +18,7 @@ class CreateCovidTestsTable extends Migration
             $table->string('officer_name', 64);
             $table->string('patient_name', 64);
             $table->date('test_date');
-            $table->string('test_name', 64);
+            $table->enum('test_name', ['PCR', 'Rapid', 'Swab'])->nullable();
             $table->string('symptomps')->nullable();
             $table->date('result_date');
             $table->enum('status', ['Process', 'Negative', 'Positive'])->nullable();

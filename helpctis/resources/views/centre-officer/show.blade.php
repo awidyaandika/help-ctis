@@ -73,7 +73,7 @@
                                 </li>
                             </ul>
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('centre-officer.index') }}" class="btn btn-sm btn-default">Back</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-sm btn-default">Back</a>
                                 <div>
                                     <form action="{{ route('centre-officer.destroy', $centre_officer->id) }}" method="POST">
                                         @csrf

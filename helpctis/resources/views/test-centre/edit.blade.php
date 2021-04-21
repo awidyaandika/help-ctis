@@ -71,11 +71,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="city">City <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="city" id="city" value="{{ $testCentre->city }}" required>
+                                    <input type="text" class="form-control @error('city') is-invalid @enderror" name="city" id="city" value="{{ $testCentre->city }}" required>
+                                    @error('city')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" name="address" id="address" required>{{ $testCentre->address }}</textarea>
+                                    <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" required>{{ $testCentre->address }}</textarea>
+                                    @error('address')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group d-flex justify-content-between">
                                     <div>

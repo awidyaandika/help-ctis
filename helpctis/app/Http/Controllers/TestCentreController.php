@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class TestCentreController extends Controller
 {
@@ -52,14 +53,14 @@ class TestCentreController extends Controller
 
         if($data){
             return redirect()->route('test-centre.index')
-                ->with('success', 'Sorry, you already created test centre');
+                ->with('error', 'Sorry, you already created test centre');
         }else{
             $request->validate([
-                'centre_name' => 'required',
-                'address' => 'required',
-                'postal_code' => 'required',
-                'phone' => 'required',
-                'city' => 'required',
+                'centre_name' => 'required|unique:test_centres|max:32',
+                'address' => 'required|unique:test_centres|max:255',
+                'postal_code' => 'required|max:8',
+                'phone' => 'required|unique:test_centres|max:20',
+                'city' => 'required|max:32',
             ]);
 
             User::where('id', $request->user()['id'])->update([
@@ -105,11 +106,23 @@ class TestCentreController extends Controller
     public function update(Request $request, TestCentre $testCentre)
     {
         $request->validate([
-            'centre_name' => 'required',
-            'address' => 'required',
-            'postal_code' => 'required',
-            'phone' => 'required',
-            'city' => 'required',
+            'centre_name' => [
+                'required',
+                Rule::unique('test_centres')->ignore($testCentre->id),
+                'max:32'
+            ],
+            'address' => [
+                'required',
+                Rule::unique('test_centres')->ignore($testCentre->id),
+                'max:255'
+            ],
+            'postal_code' => 'required|max:8',
+            'phone' => [
+                'required',
+                Rule::unique('test_centres')->ignore($testCentre->id),
+                'max:20'
+            ],
+            'city' => 'required|max:32',
         ]);
 
         User::where('id', $request->user()['id'])->update([

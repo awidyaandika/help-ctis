@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Auth;
 
 class CentreOfficerController extends Controller
 {
@@ -45,26 +47,21 @@ class CentreOfficerController extends Controller
         $request->validate([
             'centre_name' => 'required',
             'password' => ['required', 'string', 'confirmed'],
-            'username' => 'required',
-            'name' => 'required',
+            'username' => 'required|unique:users|max:16',
+            'name' => 'required|max:64',
             'gender' => 'required',
             'dob' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
+            'email' => 'required|unique:users|max:64',
+            'phone' => 'required|unique:users|max:20',
+            'address' => 'required|max:255',
             'position' => 'required',
         ]);
 
         $request['password'] = bcrypt($request->password);
 
-        $data = DB::table('users')
-            ->where('position', 'tester')
-            ->where('position', $request->position)
-            ->first();
-
         User::create($request->all());
 
-        if($data){
+        if($request->position == 'tester'){
             return redirect()->route('tester.index')
                 ->with('success','Data created successfully');
         }else{
@@ -109,6 +106,24 @@ class CentreOfficerController extends Controller
         $user = User::find($id);
 
         $request->validate([
+            'name' => 'required|max:64',
+            'address' => 'required|max:255',
+            'position',
+            'username' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+                'max:16'
+            ],
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+                'max:64'
+            ],
+            'phone' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+                'max:20'
+            ],
             'password' => 'confirmed',
         ]);
 
@@ -119,8 +134,13 @@ class CentreOfficerController extends Controller
 
         $user->update($req);
 
-        return redirect()->route('centre-officer.index')
-            ->with('success','Data updated successfully');
+        if($request->position == 'tester'){
+            return redirect()->route('tester.index')
+                ->with('success','Data created successfully');
+        }else{
+            return redirect()->route('centre-officer.index')
+                ->with('success','Data created successfully');
+        }
     }
 
     /**
