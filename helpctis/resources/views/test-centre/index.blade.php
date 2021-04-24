@@ -74,8 +74,8 @@
                                         <td>
                                             <form action="{{route('test-centre.destroy', $testcentre->id)}}" method="POST">
                                                 <input name="_method" type="hidden" value="DELETE">
-                                                <a class="btn btn-info btn-sm" href="{{ route('test-centre.show', $testcentre->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                                <a class="btn btn-warning btn-sm" href="{{ route('test-centre.edit', $testcentre->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                <a class="btn btn-info btn-sm" href="{{ route('tc-show', $testcentre->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                <a class="btn btn-warning btn-sm" href="{{ route('tc-edit', $testcentre->id) }}"><i class="nav-icon fas fa-edit"></i></a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>

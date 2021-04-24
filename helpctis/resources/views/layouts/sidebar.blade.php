@@ -19,7 +19,7 @@
                 @elseif(auth()->user()->position=='manager')
                     <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                 @else
-                    <a href="{{ route('centre-officer.show', Auth::user()->id) }}" class="d-block">{{ auth()->user()->name }}</a>
+                    <a href="{{ route('cf-show', Auth::user()->id) }}" class="d-block">{{ auth()->user()->name }}</a>
                 @endif
             </div>
         </div>

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\TestCentre;
 use App\Models\TestKit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Auth;
 
 class TestKitController extends Controller
 {
@@ -76,7 +76,12 @@ class TestKitController extends Controller
      */
     public function show(TestKit $testKit)
     {
-        return view('test-kit.show',compact('testKit'));
+        if(Auth::user()->centre_name == $testKit->testCentre->centre_name){
+            return view('test-kit.show',compact('testKit'));
+        }else{
+            return redirect()->route('test-kit.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**
@@ -87,7 +92,12 @@ class TestKitController extends Controller
      */
     public function edit(TestKit $testKit)
     {
-        return view('test-kit.edit', compact('testKit'));
+        if(Auth::user()->centre_name == $testKit->testCentre->centre_name){
+            return view('test-kit.edit', compact('testKit'));
+        }else{
+            return redirect()->route('test-kit.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**

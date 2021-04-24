@@ -26,6 +26,14 @@
                     </button>
                 </div>
             @endif
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between flex-wrap align-items-center">
@@ -71,8 +79,8 @@
                                                 <td>
                                                     <form action="{{route('patient.destroy', $patient->id)}}" method="POST">
                                                         <input name="_method" type="hidden" value="DELETE">
-                                                        <a class="btn btn-info btn-sm" href="{{ route('patient.show', $patient->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                                        <a class="btn btn-warning btn-sm" href="{{ route('patient.edit', $patient->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                        <a class="btn btn-info btn-sm" href="{{ route('pt-show', $patient->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                        <a class="btn btn-warning btn-sm" href="{{ route('pt-edit', $patient->id) }}"><i class="nav-icon fas fa-edit"></i></a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>

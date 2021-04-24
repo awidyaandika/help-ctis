@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Auth;
 
 class TesterController extends Controller
 {
@@ -72,7 +73,13 @@ class TesterController extends Controller
     public function show($id)
     {
         $tester = User::find($id);
-        return view('tester.show', compact('tester'));
+
+        if(Auth::user()->centre_name == $tester->centre_name){
+            return view('tester.show', compact('tester'));
+        }else{
+            return redirect()->route('tester.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**
@@ -84,7 +91,13 @@ class TesterController extends Controller
     public function edit($id)
     {
         $tester = User::find($id);
-        return view('tester.edit', compact('tester'));
+
+        if(Auth::user()->centre_name == $tester->centre_name){
+            return view('tester.edit', compact('tester'));
+        }else{
+            return redirect()->route('tester.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**

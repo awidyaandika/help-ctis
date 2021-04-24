@@ -91,7 +91,12 @@ class CovidTestController extends Controller
      */
     public function show(CovidTest $covidTest)
     {
-        return view('covid-test.show',compact('covidTest'));
+        if(Auth::user()->name == $covidTest->officer_name){
+            return view('covid-test.show',compact('covidTest'));
+        }else{
+            return redirect()->route('covid-test.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**
@@ -105,7 +110,12 @@ class CovidTestController extends Controller
         $user = DB::table('users')->where('position', 'patient')->paginate(5);
         $testcentres = TestCentre::all();
 
-        return view('covid-test.edit', compact('user', 'testcentres', 'covidTest'));
+        if(Auth::user()->name == $covidTest->officer_name){
+            return view('covid-test.edit', compact('user', 'testcentres', 'covidTest'));
+        }else{
+            return redirect()->route('covid-test.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**

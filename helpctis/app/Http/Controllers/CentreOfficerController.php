@@ -79,7 +79,13 @@ class CentreOfficerController extends Controller
     public function show($id)
     {
         $centre_officer = User::find($id);
-        return view('centre-officer.show', compact('centre_officer'));
+
+        if(Auth::user()->centre_name == $centre_officer->centre_name){
+            return view('centre-officer.show', compact('centre_officer'));
+        }else{
+            return redirect()->route('centre-officer.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**
@@ -91,7 +97,13 @@ class CentreOfficerController extends Controller
     public function edit($id)
     {
         $centre_officer = User::find($id);
-        return view('centre-officer.edit', compact('centre_officer'));
+
+        if(Auth::user()->centre_name == $centre_officer->centre_name){
+            return view('centre-officer.edit', compact('centre_officer'));
+        }else{
+            return redirect()->route('centre-officer.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**

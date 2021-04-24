@@ -82,7 +82,12 @@ class TestCentreController extends Controller
      */
     public function show(TestCentre $testCentre)
     {
-        return view('test-centre.show',compact('testCentre'));
+        if(Auth::user()->centre_name == $testCentre->centre_name){
+            return view('test-centre.show',compact('testCentre'));
+        }else{
+            return redirect()->route('test-centre.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
     }
 
     /**
@@ -93,7 +98,14 @@ class TestCentreController extends Controller
      */
     public function edit(TestCentre $testCentre)
     {
-        return view('test-centre.edit', compact('testCentre'));
+        if(Auth::user()->centre_name == $testCentre->centre_name){
+            return view('test-centre.edit', compact('testCentre'));
+        }else{
+            return redirect()->route('test-centre.index')
+                ->with('error','Sorry, you cant access this data!');
+        }
+
+
     }
 
     /**

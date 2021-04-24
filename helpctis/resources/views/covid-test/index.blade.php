@@ -26,6 +26,14 @@
                     </button>
                 </div>
             @endif
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between flex-wrap align-items-center">
@@ -74,8 +82,8 @@
                                             <td>
                                                 <form action="{{route('covid-test.destroy', $covidtest->id)}}" method="POST">
                                                     <input name="_method" type="hidden" value="DELETE">
-                                                    <a class="btn btn-info btn-sm" href="{{ route('covid-test.show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                                    <a class="btn btn-warning btn-sm" href="{{ route('covid-test.edit', $covidtest->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                    <a class="btn btn-info btn-sm" href="{{ route('ct-show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="{{ route('ct-edit', $covidtest->id) }}"><i class="nav-icon fas fa-edit"></i></a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
