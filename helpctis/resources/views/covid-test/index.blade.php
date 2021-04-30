@@ -59,14 +59,14 @@
                             <th>Result Date</th>
                             <th>Status</th>
                             <th>Result</th>
-                            @if(auth()->user()->position=='tester' or auth()->user()->position=='patient')
+                            @if(auth()->user()->position=='tester' or auth()->user()->position=='patient' or auth()->user()->position=='officer')
                                 <th>Action</th>
                             @endif
                         </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $covidtest)
-                                @if(auth()->user()->position=='tester' or auth()->user()->position=='officer' or auth()->user()->position=='patient')
+                                @if(auth()->user()->position=='tester' or auth()->user()->position=='officer')
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $covidtest->centre_name}}</td>
@@ -95,7 +95,8 @@
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
-                                        @elseif(auth()->user()->position=='patient')
+                                        @endif
+                                        @if(auth()->user()->position=='officer')
                                             <td>
                                                 <a class="btn btn-info btn-sm" href="{{ route('ct-show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
                                             </td>
@@ -114,6 +115,9 @@
                                             <td>{{ $covidtest->result_date}}</td>
                                             <td>{{ $covidtest->status}}</td>
                                             <td>{{ $covidtest->result}}</td>
+                                            <td>
+                                                <a class="btn btn-info btn-sm" href="{{ route('ct-show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                            </td>
                                         </tr>
                                     @endif
                                 @endif
@@ -131,7 +135,7 @@
                             <th>Result Date</th>
                             <th>Status</th>
                             <th>Result</th>
-                            @if(auth()->user()->position=='tester' or auth()->user()->position=='patient')
+                            @if(auth()->user()->position=='tester' or auth()->user()->position=='patient' or auth()->user()->position=='officer')
                                 <th>Action</th>
                             @endif
                         </tr>

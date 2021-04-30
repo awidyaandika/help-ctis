@@ -48,12 +48,10 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="test_name">Test Name <span class="text-danger">*</span></label>
-                                    <select name="test_name" id="test_name" class="form-control">
-                                        <option value="" selected disabled>-- Test Name --</option>
-                                        <option value="RT-PCR Swab Testing" {{ old('test_name') == 'RT-PCR Swab Testing' || (isset($testKit) && $testKit->test_name == 'RT-PCR Swab Testing') ? 'selected' : '' }}>RT-PCR Swab Testing</option>
-                                        <option value="Antigen Rapid Testing (RTK-Ag)" {{ old('test_name') == 'Antigen Rapid Testing (RTK-Ag)' || (isset($testKit) && $testKit->test_name == 'Antigen Rapid Testing (RTK-Ag)') ? 'selected' : '' }}>Antigen Rapid Testing (RTK-Ag)</option>
-                                        <option value="Antibody Testing" {{ old('test_name') == 'Antibody Testing' || (isset($testKit) && $testKit->test_name == 'Antibody Testing') ? 'selected' : '' }}>Antibody Testing</option>
-                                    </select>
+                                    <input type="text" class="form-control @error('test_name') is-invalid @enderror" name="test_name" id="test_name" value="{{ $testKit->test_name }}" readonly required>
+                                    @error('test_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Stock <span class="text-danger">*</span></label>

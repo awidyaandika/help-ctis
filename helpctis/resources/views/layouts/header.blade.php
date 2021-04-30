@@ -8,7 +8,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-power-off text-danger"></i>
+                <i class="fas fa-power-off text-danger"> Log Out</i>
             </a>
         </li>
     </ul>

@@ -48,7 +48,7 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="centre_name">Centre Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('centre_name') is-invalid @enderror" name="centre_name" id="centre_name" value="{{ $testCentre->centre_name }}" required>
+                                    <input type="text" class="form-control @error('centre_name') is-invalid @enderror" name="centre_name" id="centre_name" value="{{ $testCentre->centre_name }}" readonly required>
                                     @error('centre_name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

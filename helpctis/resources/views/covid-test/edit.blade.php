@@ -65,8 +65,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="symptoms">Symptomps <span class="text-danger">*</span></label>
-                                    <textarea class="form-control @error('symptoms') is-invalid @enderror" name="symptoms" id="symptoms" required>{{ $covidTest->symptoms }}</textarea>
+                                    <label for="symptoms">Symptoms <span class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('symptoms') is-invalid @enderror" name="symptoms" id="symptoms" readonly required>{{ $covidTest->symptoms }}</textarea>
                                     @error('symptoms')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
