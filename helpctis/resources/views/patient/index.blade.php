@@ -77,14 +77,35 @@
                                             <td>{{ $patient->address}}</td>
                                             @if(auth()->user()->position=='tester')
                                                 <td>
-                                                    <form action="{{route('patient.destroy', $patient->id)}}" method="POST">
-                                                        <input name="_method" type="hidden" value="DELETE">
-                                                        <a class="btn btn-info btn-sm" href="{{ route('pt-show', $patient->id) }}"><i class="nav-icon fas fa-eye"></i></a>
-                                                        <a class="btn btn-warning btn-sm" href="{{ route('pt-edit', $patient->id) }}"><i class="nav-icon fas fa-edit"></i></a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
-                                                    </form>
+                                                    <a class="btn btn-info btn-sm" href="{{ route('pt-show', $patient->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                                    <a class="btn btn-warning btn-sm" href="{{ route('pt-edit', $patient->id) }}"><i class="nav-icon fas fa-edit"></i></a>
+                                                    <a class="btn btn-danger btn-sm" href="javascript:void(0);" data-toggle="modal" data-target="#deleteModal"><i class="nav-icon fas fa-trash-alt"></i></a>
+                                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabelLogout">Delete</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Are you sure you want to delete this data?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                                                                    <a href="{{route('tester.destroy', $patient->id)}}" class="btn btn-outline-danger" onclick="event.preventDefault();
+                           document.getElementById('delete-form').submit();">Delete</a>
+                                                                    <form id="delete-form" action="{{route('patient.destroy', $patient->id)}}" method="POST" class="d-none">
+                                                                        <input name="_method" type="hidden" value="DELETE">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             @endif
                                         </tr>
@@ -126,5 +147,4 @@
             </div>
         </div>
     </section>
-
 @endsection

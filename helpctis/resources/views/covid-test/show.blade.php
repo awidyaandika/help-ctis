@@ -60,7 +60,7 @@
                                     <b>Type Test</b> <span>{{ ucfirst($covidTest->test_name) }}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
-                                    <b>Symptomps</b> <span>{{ $covidTest->symptomps }}</span>
+                                    <b>Symptomps</b> <span>{{ $covidTest->symptoms }}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <b>Result Date</b> <span>{{ $covidTest->result_date }}</span>
@@ -78,7 +78,9 @@
                                     <form action="{{ route('covid-test.destroy', $covidTest->id) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        @if(Auth::user()->position == 'tester')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        @endif
                                     </form>
                                 </div>
                             </div>

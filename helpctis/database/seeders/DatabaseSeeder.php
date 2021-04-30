@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'username' => 'manager',
-                'password' => bcrypt('mangacan'),
+                'password' => bcrypt('manager'),
                 'name' => 'Manager',
                 'gender' => 'male',
                 'email' => 'manager@gmail.com',
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'username' => 'awidyaandika',
-                'password' => bcrypt('mangacan'),
+                'password' => bcrypt('manager'),
                 'name' => 'Awidya Andika',
                 'gender' => 'male',
                 'email' => 'awidyaandika@gmail.com',

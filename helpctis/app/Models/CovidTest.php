@@ -16,7 +16,7 @@ class CovidTest extends Model
         'patient_name',
         'test_date',
         'test_name',
-        'symptomps',
+        'symptoms',
         'result_date',
         'status',
         'result',

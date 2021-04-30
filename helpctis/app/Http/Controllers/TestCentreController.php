@@ -104,8 +104,6 @@ class TestCentreController extends Controller
             return redirect()->route('test-centre.index')
                 ->with('error','Sorry, you cant access this data!');
         }
-
-
     }
 
     /**

@@ -48,16 +48,10 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="patient_name">Patient <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="patient_name" id="patient_name" required>
-                                        <option selected disabled value="">-- Patient Name --</option>
-                                        @foreach ($user as $testcentres)
-                                            @if($testcentres->centre_name==Auth::user()->centre_name)
-                                                <option disabled {{ old('name') == $testcentres->name || (isset($testcentres) && $testcentres->name == $testcentres->name) ? 'selected' : '' }} value="{{ $testcentres->name }}">{{ $testcentres->name }}</option>
-                                            @endif
-                                        @endforeach
-                                        <input type="hidden" class="form-control" name="test_date" id="test_date" value="{{ $covidTest->test_date }}" required>
-
-                                    </select>
+                                    <input type="text" class="form-control @error('patient_name') is-invalid @enderror" name="patient_name" id="patient_name" value="{{ $covidTest->patient_name }}" readonly required>
+                                    @error('patient_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="">Test Date <span class="text-danger">*</span></label>
@@ -65,17 +59,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="test_name">Type Test <span class="text-danger">*</span></label>
-                                    <select name="test_name" id="test_name" class="form-control">
-                                        <option value="" selected disabled>-- Type Test --</option>
-                                        <option value="Swab" disabled {{ old('test_name') == 'Swab' || (isset($covidTest) && $covidTest->test_name == 'Swab') ? 'selected' : '' }}>Swab</option>
-                                        <option value="PCR" disabled {{ old('test_name') == 'PCR' || (isset($covidTest) && $covidTest->test_name == 'PCR') ? 'selected' : '' }}>PCR</option>
-                                        <option value="Rapid" disabled {{ old('test_name') == 'Rapid' || (isset($covidTest) && $covidTest->test_name == 'Rapid') ? 'selected' : '' }}>Rapid</option>
-                                    </select>
+                                    <input type="text" class="form-control @error('test_name') is-invalid @enderror" name="test_name" id="test_name" value="{{ $covidTest->test_name }}" readonly required>
+                                    @error('test_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="symptomps">Symptomps <span class="text-danger">*</span></label>
-                                    <textarea class="form-control @error('symptomps') is-invalid @enderror" name="symptomps" id="symptomps" required>{{ $covidTest->symptomps }}</textarea>
-                                    @error('symptomps')
+                                    <label for="symptoms">Symptoms <span class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('symptoms') is-invalid @enderror" name="symptoms" id="symptoms" readonly required>{{ $covidTest->symptoms }}</textarea>
+                                    @error('symptoms')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -88,13 +80,16 @@
                                     <select name="status" id="status" class="form-control">
                                         <option value="" selected disabled>-- Status --</option>
                                         <option value="Process" {{ old('status') == 'Process' || (isset($covidTest) && $covidTest->status == 'Process') ? 'selected' : '' }}>Process</option>
-                                        <option value="Negative" {{ old('status') == 'Negative' || (isset($covidTest) && $covidTest->status == 'Negative') ? 'selected' : '' }}>Negative</option>
-                                        <option value="Positive" {{ old('status') == 'Positive' || (isset($covidTest) && $covidTest->status == 'Positive') ? 'selected' : '' }}>Positive</option>
+                                        <option value="Completed" {{ old('status') == 'Completed' || (isset($covidTest) && $covidTest->status == 'Completed') ? 'selected' : '' }}>Completed</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="result">Result <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('result') is-invalid @enderror" name="result" id="result" value="{{ $covidTest->result }}" required>
+                                    <select name="result" id="result" class="form-control">
+                                        <option value="" selected disabled>-- Result --</option>
+                                        <option value="HEALTHY and NEGATIVE COVID test results with the COVID-19 {{$covidTest->test_name}}">Negative</option>
+                                        <option value="POSITIVE COVID test results with the COVID-19 {{$covidTest->test_name}}">Positive</option>
+                                    </select>
                                     @error('result')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

@@ -106,7 +106,7 @@
 
                 <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                     <h3>HELP COVID-19 Testing Information System (CTIS)</h3>
-                    <p>This w is initiated to develop a website information system to administer tests and keep track of the test result of COVID-19 patients under the name of HELP Covid-19 Testing Information System (CTIS) Website.</p>
+                    <p>This website is initiated to develop a website information system to administer tests and keep track of the test result of COVID-19 patients under the name of HELP Covid-19 Testing Information System (CTIS) Website.</p>
                     <p>HELP CTIS website is developed in hope to aid the health ministry by replacing the outdated and not thoroughly secured system that is used by the hospital and medical centre across the country.</p>
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-devices"></i></div>

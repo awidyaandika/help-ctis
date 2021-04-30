@@ -62,9 +62,9 @@
                                     <label for="test_name">Test Name <span class="text-danger">*</span></label>
                                     <select name="test_name" id="test_name" class="form-control">
                                         <option value="" selected disabled>-- Test Name --</option>
-                                        <option value="Swab">Swab</option>
-                                        <option value="PCR">PCR</option>
-                                        <option value="Rapid">Rapid</option>
+                                        <option value="RT-PCR Swab Testing">RT-PCR Swab Testing</option>
+                                        <option value="Antigen Rapid Testing (RTK-Ag)">Antigen Rapid Testing (RTK-Ag)</option>
+                                        <option value="Antibody Testing">Antibody Testing</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

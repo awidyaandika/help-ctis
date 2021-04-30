@@ -18,11 +18,11 @@ class CreateCovidTestsTable extends Migration
             $table->string('officer_name', 64);
             $table->string('patient_name', 64);
             $table->date('test_date');
-            $table->enum('test_name', ['PCR', 'Rapid', 'Swab'])->nullable();
-            $table->string('symptomps')->nullable();
+            $table->string('test_name', 40);
+            $table->string('symptoms')->nullable();
             $table->date('result_date');
-            $table->enum('status', ['Process', 'Negative', 'Positive'])->nullable();
-            $table->string('result', 100);
+            $table->enum('status', ['Process', 'Completed'])->default('Process');
+            $table->string('result', 100)->default('Your test is being processed by the Tester');
             $table->timestamps();
         });
     }

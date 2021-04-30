@@ -33,7 +33,7 @@
             <form action="{{ url('/login') }}" method="POST">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="username" class="form-control" placeholder="username" name="username" required>
+                    <input type="username" class="form-control" placeholder="Username or Email" name="username" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>

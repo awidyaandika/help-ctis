@@ -28,42 +28,40 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
-//    MANAGER & OFFICER
+//  [MANAGER & OFFICER]
     // test centre
     Route::resource('test-centre', TestCentreController::class)->except(['show', 'edit']);
-    Route::get('/test-centre/{testCentre}', [App\Http\Controllers\TestCentreController::class, 'show'])->name('tc-show');
-    Route::get('/test-centre/{testCentre}/edit', [App\Http\Controllers\TestCentreController::class, 'edit'])->name('tc-edit');
-
     // test kit
     Route::resource('test-kit', TestKitController::class)->except(['show', 'edit']);
-    Route::get('/test-kit/{testKit}', [App\Http\Controllers\TestKitController::class, 'show'])->name('tk-show');
-    Route::get('/test-kit/{testKit}/edit', [App\Http\Controllers\TestKitController::class, 'edit'])->name('tk-edit');
-
     // centre officer
     Route::resource('centre-officer', CentreOfficerController::class)->except(['show', 'edit']);
     Route::get('/centre-officer/{id}', [App\Http\Controllers\CentreOfficerController::class, 'show'])->name('cf-show');
-    Route::get('/centre-officer/{id}/edit', [App\Http\Controllers\CentreOfficerController::class, 'edit'])->name('cf-edit');
-
     // tester
     Route::resource('tester', TesterController::class)->except(['show', 'edit']);
-    Route::get('/tester/{id}', [App\Http\Controllers\TesterController::class, 'show'])->name('ts-show');
-    Route::get('/tester/{id}/edit', [App\Http\Controllers\TesterController::class, 'edit'])->name('ts-edit');
 
-//TESTER
+//  [TESTER]
     // covid test
     Route::resource('covid-test', CovidTestController::class)->except(['show', 'edit']);
     Route::get('/covid-test/{covidTest}', [App\Http\Controllers\CovidTestController::class, 'show'])->name('ct-show');
-    Route::get('/covid-test/{covidTest}/edit', [App\Http\Controllers\CovidTestController::class, 'edit'])->name('ct-edit');
-
     //patient
     Route::resource('patient', PatientController::class)->except(['show', 'edit']);
     Route::get('/patient/{id}', [App\Http\Controllers\PatientController::class, 'show'])->name('pt-show');
-    Route::get('/patient/{id}/edit', [App\Http\Controllers\PatientController::class, 'edit'])->name('pt-edit');
 });
 
 Route::group(['middleware' => 'manager'], function() {
     //login
     Route::get('/manager/home', [App\Http\Controllers\HomeController::class, 'index'])->name('manager-home');
+    //test centre
+    Route::get('/test-centre/{testCentre}', [App\Http\Controllers\TestCentreController::class, 'show'])->name('tc-show');
+    Route::get('/test-centre/{testCentre}/edit', [App\Http\Controllers\TestCentreController::class, 'edit'])->name('tc-edit');
+    //test kit
+    Route::get('/test-kit/{testKit}', [App\Http\Controllers\TestKitController::class, 'show'])->name('tk-show');
+    Route::get('/test-kit/{testKit}/edit', [App\Http\Controllers\TestKitController::class, 'edit'])->name('tk-edit');
+    //centre officer
+    Route::get('/centre-officer/{id}/edit', [App\Http\Controllers\CentreOfficerController::class, 'edit'])->name('cf-edit');
+    //tester
+    Route::get('/tester/{id}', [App\Http\Controllers\TesterController::class, 'show'])->name('ts-show');
+    Route::get('/tester/{id}/edit', [App\Http\Controllers\TesterController::class, 'edit'])->name('ts-edit');
 });
 
 Route::group(['middleware' => 'officer'], function() {
@@ -74,10 +72,13 @@ Route::group(['middleware' => 'officer'], function() {
 Route::group(['middleware' => 'tester'], function() {
     //login
     Route::get('/testers/home', [App\Http\Controllers\HomeController::class, 'index'])->name('tester-home');
+    //patient
+    Route::get('/patient/{id}/edit', [App\Http\Controllers\PatientController::class, 'edit'])->name('pt-edit');
+    //covid test
+    Route::get('/covid-test/{covidTest}/edit', [App\Http\Controllers\CovidTestController::class, 'edit'])->name('ct-edit');
 });
 
 Route::group(['middleware' => 'patient'], function() {
     //login
     Route::get('/patients/home', [App\Http\Controllers\HomeController::class, 'index'])->name('patient-home');
-
 });

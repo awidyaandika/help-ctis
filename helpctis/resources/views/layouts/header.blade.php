@@ -8,7 +8,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-power-off text-danger"></i>
+                <i class="fas fa-power-off text-danger"> Log Out</i>
             </a>
         </li>
     </ul>
@@ -28,7 +28,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a href="{{ route('logout') }}" class="btn btn-primary" onclick="event.preventDefault();
+                <a href="{{ route('logout') }}" class="btn btn-outline-danger" onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">Log Out</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
