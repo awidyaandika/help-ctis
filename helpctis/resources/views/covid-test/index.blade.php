@@ -122,6 +122,11 @@
                                                 <a class="btn btn-info btn-sm" href="{{ route('ct-show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
                                             </td>
                                         @endif
+                                        @if(auth()->user()->position=='officer')
+                                            <td>
+                                                <a class="btn btn-info btn-sm" href="{{ route('ct-show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @elseif(auth()->user()->position=='patient')
                                     @if($covidtest->patient_name==Auth::user()->name)

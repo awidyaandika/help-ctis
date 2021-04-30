@@ -130,7 +130,7 @@ class PatientController extends Controller
                 Rule::unique('users')->ignore($user->id),
                 'max:20'
             ],
-            'password' => 'confirmed',
+            'password' => 'confirmed|alpha_dash',
         ]);
 
         $req = $request->except('_token', '_method', 'password', 'password_confirmation');
