@@ -50,9 +50,9 @@
                                     <label for="test_name">Test Name <span class="text-danger">*</span></label>
                                     <select name="test_name" id="test_name" class="form-control">
                                         <option value="" selected disabled>-- Test Name --</option>
-                                        <option value="Swab" {{ old('test_name') == 'Swab' || (isset($testKit) && $testKit->test_name == 'Swab') ? 'selected' : '' }}>Swab</option>
-                                        <option value="PCR" {{ old('test_name') == 'PCR' || (isset($testKit) && $testKit->test_name == 'PCR') ? 'selected' : '' }}>PCR</option>
-                                        <option value="Rapid" {{ old('test_name') == 'Rapid' || (isset($testKit) && $testKit->test_name == 'Rapid') ? 'selected' : '' }}>Rapid</option>
+                                        <option value="RT-PCR Swab Testing" {{ old('test_name') == 'RT-PCR Swab Testing' || (isset($testKit) && $testKit->test_name == 'RT-PCR Swab Testing') ? 'selected' : '' }}>RT-PCR Swab Testing</option>
+                                        <option value="Antigen Rapid Testing (RTK-Ag)" {{ old('test_name') == 'Antigen Rapid Testing (RTK-Ag)' || (isset($testKit) && $testKit->test_name == 'Antigen Rapid Testing (RTK-Ag)') ? 'selected' : '' }}>Antigen Rapid Testing (RTK-Ag)</option>
+                                        <option value="Antibody Testing" {{ old('test_name') == 'Antibody Testing' || (isset($testKit) && $testKit->test_name == 'Antibody Testing') ? 'selected' : '' }}>Antibody Testing</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

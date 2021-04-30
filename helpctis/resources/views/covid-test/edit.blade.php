@@ -86,10 +86,10 @@
                                 <div class="form-group">
                                     <label for="status">Status <span class="text-danger">*</span></label>
                                     <select name="status" id="status" class="form-control">
-                                        <option value="" selected disabled>-- Status --</option>
-                                        <option value="Process" {{ old('status') == 'Process' || (isset($covidTest) && $covidTest->status == 'Process') ? 'selected' : '' }}>Process</option>
-                                        <option value="Negative" {{ old('status') == 'Negative' || (isset($covidTest) && $covidTest->status == 'Negative') ? 'selected' : '' }}>Negative</option>
-                                        <option value="Positive" {{ old('status') == 'Positive' || (isset($covidTest) && $covidTest->status == 'Positive') ? 'selected' : '' }}>Positive</option>
+                                        <option value="" selected disabled>-- Test Name --</option>
+                                        <option value="RT-PCR Swab Testing" {{ old('test_name') == 'RT-PCR Swab Testing' || (isset($testKit) && $testKit->test_name == 'RT-PCR Swab Testing') ? 'selected' : '' }}>RT-PCR Swab Testing</option>
+                                        <option value="Antigen Rapid Testing (RTK-Ag)" {{ old('test_name') == 'Antigen Rapid Testing (RTK-Ag)' || (isset($testKit) && $testKit->test_name == 'Antigen Rapid Testing (RTK-Ag)') ? 'selected' : '' }}>Antigen Rapid Testing (RTK-Ag)</option>
+                                        <option value="Antibody Testing" {{ old('test_name') == 'Antibody Testing' || (isset($testKit) && $testKit->test_name == 'Antibody Testing') ? 'selected' : '' }}>Antibody Testing</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
