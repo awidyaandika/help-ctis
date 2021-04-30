@@ -55,18 +55,18 @@
                             <th>Patient</th>
                             <th>Test Date</th>
                             <th>Test Type</th>
-                            <th>Symptomps</th>
+                            <th>Symptoms</th>
                             <th>Result Date</th>
                             <th>Status</th>
                             <th>Result</th>
-                            @if(auth()->user()->position=='tester')
+                            @if(auth()->user()->position=='tester' or auth()->user()->position=='patient')
                                 <th>Action</th>
                             @endif
                         </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $covidtest)
-                                @if(auth()->user()->position=='tester' or auth()->user()->position=='officer')
+                                @if(auth()->user()->position=='tester' or auth()->user()->position=='officer' or auth()->user()->position=='patient')
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $covidtest->centre_name}}</td>
@@ -74,9 +74,17 @@
                                         <td>{{ $covidtest->patient_name}}</td>
                                         <td>{{ $covidtest->test_date}}</td>
                                         <td>{{ $covidtest->test_name}}</td>
-                                        <td>{{ $covidtest->symptomps}}</td>
+                                        <td>{{ $covidtest->symptoms}}</td>
                                         <td>{{ $covidtest->result_date}}</td>
-                                        <td>{{ $covidtest->status}}</td>
+                                        <td>
+                                            @if($covidtest->status == 'Process')
+                                                <button type="button" class="btn btn-outline-primary btn-sm">Process</button>
+                                            @elseif($covidtest->status == 'Negative')
+                                                <button type="button" class="btn btn-outline-success btn-sm">Negative</button>
+                                            @elseif($covidtest->status == 'Positive')
+                                                <button type="button" class="btn btn-outline-danger btn-sm">Positive</button>
+                                            @endif
+                                        </td>
                                         <td>{{ $covidtest->result}}</td>
                                         @if(auth()->user()->position=='tester')
                                             <td>
@@ -89,6 +97,10 @@
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="nav-icon fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
+                                        @elseif(auth()->user()->position=='patient')
+                                            <td>
+                                                <a class="btn btn-info btn-sm" href="{{ route('ct-show', $covidtest->id) }}"><i class="nav-icon fas fa-eye"></i></a>
+                                            </td>
                                         @endif
                                     </tr>
                                 @elseif(auth()->user()->position=='patient')
@@ -100,7 +112,7 @@
                                             <td>{{ $covidtest->patient_name}}</td>
                                             <td>{{ $covidtest->test_date}}</td>
                                             <td>{{ $covidtest->test_name}}</td>
-                                            <td>{{ $covidtest->symptomps}}</td>
+                                            <td>{{ $covidtest->symptoms}}</td>
                                             <td>{{ $covidtest->result_date}}</td>
                                             <td>{{ $covidtest->status}}</td>
                                             <td>{{ $covidtest->result}}</td>
@@ -117,11 +129,11 @@
                             <th>Patient</th>
                             <th>Test Date</th>
                             <th>Type Test</th>
-                            <th>Symptomps</th>
+                            <th>Symptoms</th>
                             <th>Result Date</th>
                             <th>Status</th>
                             <th>Result</th>
-                            @if(auth()->user()->position=='tester')
+                            @if(auth()->user()->position=='tester' or auth()->user()->position=='patient')
                                 <th>Action</th>
                             @endif
                         </tr>

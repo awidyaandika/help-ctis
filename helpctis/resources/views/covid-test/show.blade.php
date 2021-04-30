@@ -60,7 +60,7 @@
                                     <b>Type Test</b> <span>{{ ucfirst($covidTest->test_name) }}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
-                                    <b>Symptomps</b> <span>{{ $covidTest->symptomps }}</span>
+                                    <b>Symptomps</b> <span>{{ $covidTest->symptoms }}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <b>Result Date</b> <span>{{ $covidTest->result_date }}</span>

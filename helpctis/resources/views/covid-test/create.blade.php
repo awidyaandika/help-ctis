@@ -87,31 +87,15 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="symptomps">Symptomps <span class="text-danger">*</span></label>
-                                    <textarea class="form-control @error('symptomps') is-invalid @enderror" name="symptomps" id="symptomps" required></textarea>
-                                    @error('symptomps')
+                                    <label for="symptoms">Symptomps <span class="text-danger">*</span></label>
+                                    <textarea class="form-control @error('symptoms') is-invalid @enderror" name="symptoms" id="symptoms" required></textarea>
+                                    @error('symptoms')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="result_date">Result Date <span class="text-danger">*</span></label>
                                     <input type="date" class="form-control" name="result_date" id="resultdate" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="status">Status <span class="text-danger">*</span></label>
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="" selected disabled>-- Status --</option>
-                                        <option value="Process">Process</option>
-                                        <option value="Negative">Negative</option>
-                                        <option value="Positive">Positive</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="result">Result <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control @error('result') is-invalid @enderror" name="result" id="result" required>
-                                    @error('result')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="form-group d-flex justify-content-between">
                                     <div>

@@ -57,10 +57,8 @@ class CovidTestController extends Controller
             'patient_name' => 'required|max:64',
             'test_date' => 'required',
             'test_name' => 'required',
-            'symptomps' => 'required|max:255',
+            'symptoms' => 'required|max:255',
             'result_date' => 'required',
-            'status' => 'required',
-            'result' => 'required|max:100',
         ]);
 
         $data = DB::table('test_kits')
@@ -92,6 +90,8 @@ class CovidTestController extends Controller
     public function show(CovidTest $covidTest)
     {
         if(Auth::user()->name == $covidTest->officer_name){
+            return view('covid-test.show',compact('covidTest'));
+        }elseif(Auth::user()->name == $covidTest->patient_name){
             return view('covid-test.show',compact('covidTest'));
         }else{
             return redirect()->route('covid-test.index')
@@ -129,7 +129,7 @@ class CovidTestController extends Controller
     {
         $request->validate([
             'test_date' => 'required',
-            'symptomps' => 'required|max:255',
+            'symptoms' => 'required|max:255',
             'result_date' => 'required',
             'status' => 'required',
             'result' => 'required|max:100',

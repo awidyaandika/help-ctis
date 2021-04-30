@@ -45,8 +45,8 @@ class TesterController extends Controller
     {
         $request->validate([
             'centre_name' => 'required',
-            'password' => ['required', 'string', 'confirmed'],
-            'username' => 'required|unique:users|max:16',
+            'password' => ['required', 'string', 'confirmed', 'alpha_dash'],
+            'username' => 'required|unique:users|max:16|alpha_dash',
             'name' => 'required|max:64',
             'gender' => 'required',
             'dob' => 'required',
@@ -118,7 +118,8 @@ class TesterController extends Controller
             'username' => [
                 'required',
                 Rule::unique('users')->ignore($user->id),
-                'max:16'
+                'max:16',
+                'alpha_dash'
             ],
             'email' => [
                 'required',
@@ -130,7 +131,7 @@ class TesterController extends Controller
                 Rule::unique('users')->ignore($user->id),
                 'max:20'
             ],
-            'password' => 'confirmed',
+            'password' => 'confirmed|alpha_dash',
         ]);
 
         $req = $request->except('_token', '_method', 'password', 'password_confirmation');

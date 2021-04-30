@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
-        <img src="{{ asset('helpctis/dist/img/hospital.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{{ asset('helpctis/dist/img/hospital2.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">HELP CTIS</span>
     </a>
@@ -15,7 +15,7 @@
             </div>
             <div class="info">
                 @if(auth()->user()->position=='patient')
-                    <a href="{{ route('patient.show', Auth::user()->id) }}" class="d-block">{{ auth()->user()->name }}</a>
+                    <a href="{{ route('pt-show', Auth::user()->id) }}" class="d-block">{{ auth()->user()->name }}</a>
                 @elseif(auth()->user()->position=='manager')
                     <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                 @else
@@ -156,7 +156,7 @@
                     </li>
                     <li class="nav-header">MENUS</li>
                     <li class="nav-item">
-                        <a href="{{ route('patient.show', Auth::user()->id) }}" class="nav-link {{ Request::is('patient.show') || Request::is('patient/*') ? 'active' : '' }}">
+                        <a href="{{ route('pt-show', Auth::user()->id) }}" class="nav-link {{ Request::is('patient.show') || Request::is('patient/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Bio</p>
                         </a>
