@@ -79,10 +79,8 @@
                                         <td>
                                             @if($covidtest->status == 'Process')
                                                 <button type="button" class="btn btn-outline-primary btn-sm">Process</button>
-                                            @elseif($covidtest->status == 'Negative')
-                                                <button type="button" class="btn btn-outline-success btn-sm">Negative</button>
-                                            @elseif($covidtest->status == 'Positive')
-                                                <button type="button" class="btn btn-outline-danger btn-sm">Positive</button>
+                                            @elseif($covidtest->status == 'Completed')
+                                                <button type="button" class="btn btn-outline-success btn-sm">Completed</button>
                                             @endif
                                         </td>
                                         <td>{{ $covidtest->result}}</td>

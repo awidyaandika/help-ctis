@@ -16,7 +16,7 @@ class CreateTestKitsTable extends Migration
         Schema::create('test_kits', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('centre_id')->unsigned();
-            $table->enum('test_name', ['PCR', 'Rapid', 'Swab'])->nullable();
+            $table->string('test_name', 40);
             $table->integer('stock');
             $table->timestamps();
         });

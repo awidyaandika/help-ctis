@@ -128,7 +128,6 @@ class CovidTestController extends Controller
     public function update(Request $request, CovidTest $covidTest)
     {
         $request->validate([
-            'test_date' => 'required',
             'symptoms' => 'required|max:255',
             'result_date' => 'required',
             'status' => 'required',
